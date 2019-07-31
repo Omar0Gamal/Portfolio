@@ -1,0 +1,17 @@
+name: RankGrant
+version: 1.0
+main: me.cmplayMC.RankGrant.Main
+loadbefore: [PermissionsEx]
+depend: [PermissionsEx]
+softdepend: [Vault]
+authors: [cmplayMC]
+description: RankGrant - New powerful and easy way to give player ranks!.
+website: https://omargamalm8.wixsite.com/website 
+commands:
+     Grant:
+       description: Give a player a Rank
+       aliases: [gr,grn]
+       usage: /Grant <Player>
+       permission: grant.use
+       permission-message: You do not have the permission to use that command!!
+

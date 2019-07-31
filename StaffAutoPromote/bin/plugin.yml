@@ -1,0 +1,13 @@
+main: me.cmplayMC.StaffAutoPromote.Main
+name: StaffAutoPromote
+version: 1.0.0
+description: StaffAutoPromote Made by cmplayMC
+author: cmplayMC
+website: https://omargamalm8.wixsite.com/website
+commands:
+     Support:
+       description: Submit A Support ticket
+       usage: /Support (Reson)
+     sap:
+       description: See the players issuo or repla to someone
+       usage: /Sap (Player|List|Score|Top|End)

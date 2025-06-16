@@ -166,7 +166,7 @@ const Projects: React.FC = () => {
         <>
             <section id="projects" className="min-h-screen py-24 px-5 flex items-center justify-center">
                 <div className="max-w-6xl w-full">
-                    <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent pb-2">
                         Key Projects
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

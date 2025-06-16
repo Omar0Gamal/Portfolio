@@ -45,21 +45,21 @@ const About: React.FC = () => {
                         </div>
                     </div>
                     <div className="lg:col-span-2 grid grid-cols-2 gap-6 animate-right">
-                        <div className="text-center p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-1">
-                            <span className="text-6xl font-black text-primary block">7+</span>
-                            <span className="text-gray mt-3 block text-lg">Years Experience</span>
+                        <div className="text-center p-6 md:p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-1">
+                            <span className="text-4xl md:text-6xl font-black text-primary block">7+</span>
+                            <span className="text-gray mt-3 block text-sm md:text-lg">Years Experience</span>
                         </div>
-                        <div className="text-center p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-2">
-                            <span className="text-6xl font-black text-primary block">20+</span>
-                            <span className="text-gray mt-3 block text-lg">Projects Delivered</span>
+                        <div className="text-center p-6 md:p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-2">
+                            <span className="text-4xl md:text-6xl font-black text-primary block">20+</span>
+                            <span className="text-gray mt-3 block text-sm md:text-lg">Projects Delivered</span>
                         </div>
-                        <div className="text-center p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-3">
-                            <span className="text-6xl font-black text-primary block">1000+</span>
-                            <span className="text-gray mt-3 block text-lg">Users Served</span>
+                        <div className="text-center p-6 md:p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-3">
+                            <span className="text-4xl md:text-6xl font-black text-primary block">1000+</span>
+                            <span className="text-gray mt-3 block text-sm md:text-lg">Users Served</span>
                         </div>
-                        <div className="text-center p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-4">
-                            <span className="text-6xl font-black text-primary block">3.93</span>
-                            <span className="text-gray mt-3 block text-lg">GPA</span>
+                        <div className="text-center p-6 md:p-10 bg-primary/10 rounded-2xl border border-primary/20 transition-transform duration-300 hover:-translate-y-1 animate-scale stagger-delay-4">
+                            <span className="text-4xl md:text-6xl font-black text-primary block">3.93</span>
+                            <span className="text-gray mt-3 block text-sm md:text-lg">GPA</span>
                         </div>
                     </div>
                 </div>

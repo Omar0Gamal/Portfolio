@@ -15,6 +15,25 @@ const Projects: React.FC = () => {
         ...detail,
     }));
 
+    const getStatusStyles = (status: string) => {
+        switch (status.toLowerCase()) {
+            case 'completed':
+                return 'bg-green-500/20 text-green-400 border-green-500/30';
+            case 'in development':
+            case 'in-development':
+                return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+            case 'planned':
+                return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
+            case 'on hold':
+            case 'on-hold':
+                return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+            case 'archived':
+                return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+            default:
+                return 'bg-accent/20 text-accent border-accent/30';
+        }
+    };
+
     const openProjectModal = (project: Project) => {
         setSelectedProject(project);
         setIsModalOpen(true);
@@ -47,6 +66,11 @@ const Projects: React.FC = () => {
                 )}
             </div>
             <div className="p-6">
+                {project.status && (
+                    <span className={`inline-block py-1 px-4 rounded-2xl text-xs font-semibold mb-4 border ${getStatusStyles(project.status)}`}>
+                        {project.status}
+                    </span>
+                )}
                 <h3 className="text-xl font-bold text-light mb-3">{project.title}</h3>
                 <p className="text-sm mb-4 line-clamp-3">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
@@ -117,6 +141,12 @@ const Projects: React.FC = () => {
                     )}
                 </div>
 
+                {project.status && (
+                    <span className={`inline-block py-1 px-4 rounded-2xl text-sm font-semibold mb-4 border ${getStatusStyles(project.status)}`}>
+                        {project.status}
+                    </span>
+                )}
+
                 <h2 className="text-3xl text-primary mb-4">{project.title}</h2>
                 <p className="text-lg mb-6 leading-relaxed">{project.description}</p>
 
@@ -133,7 +163,7 @@ const Projects: React.FC = () => {
                 </div>
 
                 <div className="mb-6">
-                    <h4 className="text-accent mb-3 text-xl">Key Features</h4>
+                    <h4 className="text-accent mb-3 text-xl">Technologies</h4>
                     <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech) => (
                             <span key={tech} className="bg-primary/10 text-primary py-2 px-3 rounded-lg text-sm border border-primary/30">

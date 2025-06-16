@@ -5,9 +5,11 @@ export interface ProjectDetail {
     features: string[];
     technologies: string[];
     links?: Record<string, string>;
+    status?: ProjectStatus;
 }
 
 export type ProjectKey = 'nexuscommerce' | 'nebulaengine' | 'darkfire' | 'aiml';
+export type ProjectStatus = "In Development" | "Completed" | "Research";
 
 const projectDetails: Record<ProjectKey, ProjectDetail> = {
     nexuscommerce: {
@@ -41,6 +43,7 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
         links: {
             "View Source": "https://github.com/Omar0Gamal/Nexus-Commerce",
         },
+        status: "In Development",
     },
     nebulaengine: {
         title: "🌌 NebulaEngine - Next-Gen Game Engine",
@@ -71,6 +74,7 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
         links: {
             "View Source": "https://github.com/Omar0Gamal/NebulaEngine"
         },
+        status: "In Development",
     },
     darkfire: {
         title: "🔥 DarkFire - 3D Game Engine",
@@ -99,6 +103,7 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
         links: {
             "View Source": "https://github.com/Omar0Gamal/DarkFire"
         },
+        status: "Completed",
     },
     aiml: {
         title: "🤖 AI & Machine Learning Research",
@@ -125,6 +130,7 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
             "OpenCV",
             "Scikit-learn",
         ],
+        status: "Research",
     },
 };
 

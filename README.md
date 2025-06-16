@@ -35,32 +35,6 @@ As a passionate developer who loves both **game engines** and **web technologies
 - **Share Buttons**: Easy social media sharing
 - **Dark Theme**: Sleek dark design with neon accents
 
-## 🏗️ Project Structure
-
-```
-omar-gamal/
-├── 📁 app/
-│   ├── 🏠 page.tsx              # Home page
-│   ├── 📱 layout.tsx            # Root layout
-│   ├── 🎨 globals.css           # Global styles
-│   ├── 📝 articles/             # Articles pages
-│   │   ├── page.tsx            # Articles listing
-│   │   └── [slug]/             # Individual articles
-└── 📁 components/
-    ├── 🎯 Hero.tsx              # Landing section
-    ├── 👨‍💻 About.tsx              # About section
-    ├── 💼 Experience.tsx        # Work experience
-    ├── 🚀 Projects.tsx          # Portfolio projects
-    ├── 🛠️ Skills.tsx            # Technical skills
-    ├── 🎓 Education.tsx         # Educational background
-    ├── 📧 Contact.tsx           # Contact information
-    ├── 🧭 Navigation.tsx        # Site navigation
-    ├── 📊 ScrollProgress.tsx    # Reading progress
-    ├── ✨ BackgroundAnimation.tsx # Visual effects
-    ├── 🎆 Particles.tsx         # Particle system
-    └── 📰 LatestArticles.tsx    # Blog preview
-```
-
 ## 🚀 What You'll Discover
 
 ### 💼 Professional Experience

@@ -6,7 +6,7 @@ import { Analytics } from '@vercel/analytics/react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://omargamal.dev'),
+  metadataBase: new URL('https://omargamal.engineer'),
   title: {
     default: 'Omar Gamal - Software Engineer & Game Engine Developer',
     template: '%s | Omar Gamal Portfolio'
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://omargamal.dev',
+    url: 'https://omargamal.engineer',
     siteName: 'Omar Gamal Portfolio',
     title: 'Omar Gamal - Software Engineer & Game Engine Developer',
     description: 'Software Engineer specializing in game engines, full-stack development, and enterprise solutions.',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     'linkedin:title': 'Omar Gamal - Software Engineer & Game Engine Developer',
     'linkedin:description': 'Senior Software Engineer with 7+ years experience in game engines, C++, DirectX, Unity, React, and enterprise solutions.',
     'linkedin:image': '/og-image.jpg',
-    'linkedin:url': 'https://omargamal.dev',
+    'linkedin:url': 'https://omargamal.engineer',
   },
   robots: {
     index: true,

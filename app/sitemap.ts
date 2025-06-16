@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://omargamal.dev'
+  const baseUrl = 'https://omargamal.engineer'
   
   // Get all articles
   const articlesDirectory = path.join(process.cwd(), 'content/articles')

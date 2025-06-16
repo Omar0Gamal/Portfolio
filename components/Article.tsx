@@ -15,7 +15,6 @@ export default function ArticleC({ article }: ArticleProps) {
         <>
             <BackgroundAnimation />
             <Particles />
-            
             <style jsx global>{`
                 /* Custom scrollbar for content */
                 .article-content::-webkit-scrollbar {

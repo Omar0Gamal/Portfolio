@@ -11,7 +11,7 @@ interface TocItem {
 
 export default function ScrollSpyToc({ toc }: { toc: TocItem[] }) {
   const [activeId, setActiveId] = useState<string | null>(null)
-  const [isOutOfView, setIsOutOfView] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,17 +28,6 @@ export default function ScrollSpyToc({ toc }: { toc: TocItem[] }) {
         .sort((a, b) => b.top - a.top)
 
       if (inView.length > 0) setActiveId(inView[0].id)
-
-      // Check if we've scrolled past the TOC content area
-      const firstHeading = document.getElementById(toc[0]?.id)
-      const lastHeading = document.getElementById(toc[toc.length - 1]?.id)
-      
-      if (firstHeading && lastHeading) {
-        const firstRect = firstHeading.getBoundingClientRect()
-        const lastRect = lastHeading.getBoundingClientRect()
-        // Show full-width bar if we've scrolled past all headings or before the first heading
-        setIsOutOfView(firstRect.top > window.innerHeight || lastRect.bottom < 0)
-      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -49,6 +38,7 @@ export default function ScrollSpyToc({ toc }: { toc: TocItem[] }) {
 
   return (
     <>
+      {/* Desktop sidebar */}
       <aside className="scrollspy-container sticky top-20 hidden lg:block w-64 max-h-[80vh] overflow-y-auto text-sm pr-4 border-r border-white/10 backdrop-blur-md bg-black/10 modal-scrollbar">
         <h2 className="font-semibold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
           On this page
@@ -73,25 +63,58 @@ export default function ScrollSpyToc({ toc }: { toc: TocItem[] }) {
         </ul>
       </aside>
 
-      {/* Full-width bar when out of view */}
-      {isOutOfView && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10 p-4">
-          <div className="max-w-7xl mx-auto flex items-center gap-4 overflow-x-auto">
-            <span className="text-sm font-semibold text-primary whitespace-nowrap">On this page:</span>
-            {toc.map(item => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={clsx(
-                  'text-sm whitespace-nowrap px-3 py-1 rounded-lg transition-all duration-300',
-                  activeId === item.id 
-                    ? 'text-primary font-semibold bg-white/10' 
-                    : 'text-white/70 hover:text-white/90 hover:bg-white/5'
-                )}
-              >
-                {item.text}
-              </a>
-            ))}
+      {/* Mobile hamburger button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="fixed top-4 right-4 z-50 lg:hidden bg-black/80 backdrop-blur-md p-2 rounded-lg border border-white/10"
+        aria-label="Toggle table of contents"
+      >
+        <div className="w-6 h-6 flex flex-col justify-center items-center">
+          <span className={clsx(
+            'block h-0.5 w-6 bg-white transition-all duration-300',
+            isMobileMenuOpen ? 'rotate-45 translate-y-1' : 'translate-y-0'
+          )} />
+          <span className={clsx(
+            'block h-0.5 w-6 bg-white transition-all duration-300 mt-1',
+            isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+          )} />
+          <span className={clsx(
+            'block h-0.5 w-6 bg-white transition-all duration-300 mt-1',
+            isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0'
+          )} />
+        </div>
+      </button>
+
+      {/* Mobile menu overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="absolute top-16 right-4 bg-black/90 backdrop-blur-md border border-white/10 rounded-lg p-4 max-w-xs w-full max-h-[70vh] overflow-y-auto modal-scrollbar">
+            <h2 className="font-semibold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              On this page
+            </h2>
+            <ul className="space-y-2">
+              {toc.map(item => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={clsx(
+                      'block hover:text-primary transition-all duration-300 rounded-lg px-3 py-2 hover:bg-white/5',
+                      item.level === 3 ? 'ml-4 text-sm' : '',
+                      activeId === item.id 
+                        ? 'text-primary font-semibold bg-white/10 border-l-2 border-primary' 
+                        : 'text-white/70 hover:text-white/90'
+                    )}
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )}

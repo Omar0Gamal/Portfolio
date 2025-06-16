@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -97,7 +97,6 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
         <link rel="manifest" href="/icons/site.webmanifest" />
-        {/* <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> */}
         <meta name="theme-color" content="#00f5ff" />
       </head>
       <body className={inter.className + "font-sf bg-dark text-light leading-relaxed overflow-x-hidden scrollbar-none"}>

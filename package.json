@@ -15,7 +15,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "isomorphic-dompurify": "^2.25.0",
-    "next": "15.3.3",
+    "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

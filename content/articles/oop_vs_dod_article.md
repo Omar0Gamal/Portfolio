@@ -108,7 +108,7 @@ The scattered memory layout meant the CPU constantly waited for data from slower
 - **Memory Fetches**: 9  
 - **Hit Rate**: 81%
 
-The contiguous data layout meant more cache hits and fewer expensive memory fetches - a **17% improvement** in cache efficiency, which translates to significant performance gains in real applications.
+The contiguous data layout meant more cache hits and fewer expensive memory fetches, yielding a **17% improvement** in cache efficiency, which translates to significant performance gains in real applications.
 
 ## Understanding Cache Locality
 
@@ -130,7 +130,7 @@ The visualization in my performance comparison clearly shows:
 - **OOP**: Random, scattered memory access creating cache pollution
 - **DoD**: Sequential, predictable access patterns that maximize cache utilization
 
-This isn't just theoretical - it's measurable performance that impacts frame rates in real games.
+This isn't just theoretical; it's measurable performance that impacts frame rates in real games.
 
 ## Scaling to Real Game Engines
 
@@ -354,7 +354,7 @@ void UpdatePositions(uint3 id : SV_DispatchThreadID) {
 
 ## Conclusion: A New Mindset
 
-The transition from OOP to DoD isn't just about changing code - it's about fundamentally shifting how you think about performance. Instead of optimizing algorithms in isolation, you optimize the entire data flow through your system.
+The transition from OOP to DoD isn't just about changing code; it's about fundamentally shifting how you think about performance. Instead of optimizing algorithms in isolation, you optimize the entire data flow through your system.
 
 The performance improvements speak for themselves:
 - **17% better cache hit rates** in our example
@@ -370,7 +370,7 @@ In my next posts, I'll dive deeper into:
 - **Memory Pool Allocators**: Custom allocation strategies for games
 - **Cross-Platform Performance**: DoD techniques across different hardware
 
-The future of game performance isn't just about better hardware - it's about writing code that works **with** the hardware instead of against it. DoD is your path to that future.
+The future of game performance isn't just about better hardware; it's about writing code that works **with** the hardware instead of against it. DoD is your path to that future.
 
 ---
 

@@ -8,130 +8,115 @@ export interface ProjectDetail {
     status?: ProjectStatus;
 }
 
-export type ProjectKey = 'nexuscommerce' | 'nebulaengine' | 'darkfire' | 'aiml';
-export type ProjectStatus = "In Development" | "Completed" | "Research";
+export type ProjectKey = 'cartwright' | 'axiomgraph' | 'llamacpp' | 'nexuscommerce' | 'darkfire';
+export type ProjectStatus = "In Development" | "Completed" | "Research" | "Open Source";
 
 const projectDetails: Record<ProjectKey, ProjectDetail> = {
-    nexuscommerce: {
-        title: "🛒 NexusCommerce - Enterprise E-Commerce Platform",
+    cartwright: {
+        title: "Cartwright",
         description:
-            "A scalable, enterprise-grade e-commerce platform built with modern microservices architecture. 🚀",
-        image: "/images/nexuscommerce.png",
+            "A polyglot saga implementation proving that distributed checkout can recover cleanly from mid-flight failures. Built as an open-source reference for production patterns.",
+        image: "/images/cartwright.svg",
         features: [
-            "🔄 Dual backend architecture (Express.js + Go/Gin)",
-            "☸️ Kubernetes orchestration with auto-scaling",
-            "⚡ Redis caching for improved performance",
-            "🗄️ PostgreSQL with optimized indexing",
-            "⚛️ React.js frontend with TypeScript",
-            "🔧 Comprehensive CI/CD pipeline",
-            "📦 Real-time inventory management",
-            "📊 Advanced analytics dashboard",
-            "💳 Multi-payment gateway integration",
-            "👥 Admin panel with role-based access",
+            "🔄 Saga orchestrator in Go; billing in C#/ASP.NET; notifier in Python",
+            "📡 gRPC + Protocol Buffers for typed inter-service contracts",
+            "📦 Transactional outbox → NATS JetStream for at-least-once delivery",
+            "🛡️ Compensating transactions roll back partial failures automatically",
+            "🔑 Idempotency keys prevent duplicate charges on retry",
+            "🔁 Exponential backoff with lease-based saga recovery",
+            "💥 Scripted chaos tests kill services mid-request to verify correctness",
+            "☸️ Helm chart deployed to k3s provisioned with Terraform",
         ],
         technologies: [
-            "React.js",
-            "TypeScript",
-            "Express.js",
-            "Go",
-            "PostgreSQL",
-            "Redis",
-            "Kubernetes",
-            "Docker",
-            "GitHub Actions",
+            "Go", "C#", "ASP.NET", "Python",
+            "gRPC", "NATS JetStream",
+            "Kubernetes", "Helm", "Terraform"
+        ],
+        links: {
+            "View Source": "https://github.com/Omar0Gamal/cartwright",
+        },
+        status: "Completed",
+    },
+    axiomgraph: {
+        title: "AxiomGraph",
+        description:
+            "A hybrid graph-vector database written in C++17 with concurrent graph mutations alongside GPU-accelerated nearest-neighbour search and a Python SDK.",
+        image: "/images/axiomgraph.svg",
+        features: [
+            "📊 Adjacency-list graph with CSR consolidation for cache efficiency",
+            "🔍 KNN search via hnswlib (CPU) and NVIDIA cuVS (GPU)",
+            "🔒 Lock-striped concurrent writes for high-throughput mutations",
+            "🐍 nanobind Python SDK (zero-copy interop)",
+            "⚙️ CMake build with pre-built wheels published on GitHub Releases",
+        ],
+        technologies: ["C++17", "Python", "SQLite", "CMake", "CUDA"],
+        links: {
+            "View Source": "https://github.com/Omar0Gamal/AxiomGraph"
+        },
+        status: "Completed",
+    },
+    llamacpp: {
+        title: "llama.cpp",
+        description:
+            "Open-source contribution to the widely-used llama.cpp inference engine. Patched two RPC server out-of-bounds memory bugs reported in production.",
+        image: "/images/cover-llama-cpp-dark.svg",
+        features: [
+            "🐛 Fixed two out-of-bounds memory bugs in the RPC server",
+            "🛡️ Added tensor shape validation before graph execution",
+            "🚫 Rejects malformed GET_ROWS / SET_ROWS requests at the boundary",
+        ],
+        technologies: ["C++"],
+        links: {
+            "View Pull Request": "https://github.com/ggml-org/llama.cpp/pull/26933"
+        },
+        status: "Open Source",
+    },
+    nexuscommerce: {
+        title: "NexusCommerce",
+        description:
+            "A multi-tenant e-commerce platform where each merchant gets an isolated storefront, custom domain, and full order pipeline. Backend and infrastructure are production-ready; new Next.js 15 frontend is in active development.",
+        image: "/images/nexuscommerce.png",
+        features: [
+            "🏢 Tenant isolation via subdomain and custom domain routing with Caddy",
+            "🔄 Event-driven services connected through RabbitMQ",
+            "🔐 JWT auth with role-based access (Admin, Merchant, Customer)",
+            "💳 Integrated Paymob payment processing",
+            "⚡ Redis caching layer over PostgreSQL + GORM",
+            "📦 Full Docker Compose deployment with Caddy reverse proxy",
+            "📊 Per-tenant analytics, inventory tracking, and storefront branding",
+            "⚛️ Next.js 15 frontend (currently under active development)",
+        ],
+        technologies: [
+            "Go", "Next.js 15", "TypeScript",
+            "PostgreSQL", "Redis", "RabbitMQ",
+            "Docker", "Caddy"
         ],
         links: {
             "View Source": "https://github.com/Omar0Gamal/Nexus-Commerce",
         },
         status: "In Development",
     },
-    nebulaengine: {
-        title: "🌌 NebulaEngine - Next-Gen Game Engine",
-        description:
-            "A modern, cross-platform game engine with advanced graphics capabilities and ECS architecture. ✨",
-        image: "/images/nebula-engine.jpg",
-        features: [
-            "🖥️ Cross-platform support (Windows, Linux, macOS)",
-            "🎮 DirectX11/12 and Vulkan renderer",
-            "🏗️ Advanced Entity Component System",
-            "🔍 NebulaSync C++ reflection library",
-            "⚛️ Built-in physics engine integration",
-            "🎨 Visual scripting system",
-            "🔥 Real-time asset hot-reloading",
-            "🧠 Memory-optimized resource management",
-            "🔌 Modular plugin architecture",
-            "🐛 Comprehensive debugging tools",
-        ],
-        technologies: [
-            "C++",
-            "DirectX11/12",
-            "Vulkan",
-            "OpenGL",
-            "CMake",
-            "Python",
-            "Lua",
-        ],
-        links: {
-            "View Source": "https://github.com/Omar0Gamal/NebulaEngine"
-        },
-        status: "In Development",
-    },
     darkfire: {
-        title: "🔥 DarkFire - 3D Game Engine",
+        title: "DarkFire",
         description:
-            "A complete 3D game engine built from scratch with DirectX11, featuring ECS architecture and a space shooter demo. 🚀",
+            "A 3D game engine written from scratch in C++ with a custom DirectX 11 renderer, ECS architecture, and a playable space-shooter demo.",
         image: "/images/darkfire-engine.jpeg",
         features: [
-            "🎨 Custom DirectX11 renderer",
-            "🏗️ Entity Component System architecture",
-            "💾 Memory pool allocation system",
-            "🎭 3D model loading and animation",
-            "⚡ Shader compilation and management",
-            "🔊 Audio system integration",
-            "🎮 Input handling framework",
-            "🚀 Space shooter demo game",
-            "📈 Performance profiling tools",
-            "🧮 Custom math library",
+            "🎨 Custom DirectX 11 renderer with HLSL shaders",
+            "🏗️ Entity Component System for cache-friendly object management",
+            "🎭 3D model loading and skeletal animation",
+            "⚡ Shader hot-reloading and compilation pipeline",
+            "🔊 Integrated audio system",
+            "🎮 Raw input handling framework",
+            "🚀 Playable space-shooter demo bundled with the engine",
+            "🧮 Custom linear algebra math library",
         ],
-        technologies: [
-            "C++",
-            "DirectX11",
-            "HLSL",
-            "Windows API",
-            "Visual Studio",
-        ],
+        technologies: ["C++", "DirectX 11", "HLSL", "Windows API"],
         links: {
             "View Source": "https://github.com/Omar0Gamal/DarkFire"
         },
         status: "Completed",
-    },
-    aiml: {
-        title: "🤖 AI & Machine Learning Research",
-        description:
-            "Research and implementation of various AI models for game development and intelligent system applications. 🧠",
-        image: "/images/ai-ml-models.png",
-        features: [
-            "🧬 Neural network implementations from scratch",
-            "🌳 Game AI behavior trees",
-            "🗺️ Pathfinding algorithms (A*, Dijkstra)",
-            "🎯 Decision-making systems",
-            "🎮 Reinforcement learning for NPCs",
-            "👁️ Computer vision for gameplay",
-            "💬 Natural language processing",
-            "🧬 Genetic algorithms for optimization",
-            "🌫️ Fuzzy logic systems",
-            "⚡ Machine learning model optimization",
-        ],
-        technologies: [
-            "Python",
-            "TensorFlow",
-            "PyTorch",
-            "NumPy",
-            "OpenCV",
-            "Scikit-learn",
-        ],
-        status: "Research",
-    },
+    }
 };
 
 export default projectDetails;

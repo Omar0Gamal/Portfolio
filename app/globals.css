@@ -1,14 +1,17 @@
 @import "tailwindcss";
 :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #00f5ff;
-    --secondary: #ff0080;
-    --accent: #00ff88;
-    --dark: #0a0a0f;
-    --darker: #050508;
-    --light: #ffffff;
-    --gray: #888;
+    --background: #080c14;
+    --foreground: #e2e8f0;
+    --primary: #38bdf8;
+    --secondary: #7dd3fc;
+    --accent: #0ea5e9;
+    --dark: #050810;
+    --darker: #030609;
+    --light: #f0f9ff;
+    --gray: #94a3b8;
+    --badge-bg: rgba(56,189,248,0.10);
+    --badge-border: rgba(56,189,248,0.25);
+    --badge-text: #93c5fd;
 }
 
 @theme inline {
@@ -93,7 +96,7 @@ body {
 }
 
 .text-gradient {
-        background: linear-gradient(135deg, #00f5ff, #ff0080, #00ff88);
+        background: linear-gradient(135deg, #38bdf8, #818cf8, #0ea5e9);
         background-size: 400% 400%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -104,17 +107,17 @@ body {
 .bg-radial-custom {
         background: radial-gradient(
                         circle at 20% 80%,
-                        rgba(0, 245, 255, 0.1) 0%,
+                        rgba(56, 189, 248, 0.08) 0%,
                         transparent 50%
                 ),
                 radial-gradient(
                         circle at 80% 20%,
-                        rgba(255, 0, 128, 0.1) 0%,
+                        rgba(129, 140, 248, 0.06) 0%,
                         transparent 50%
                 ),
                 radial-gradient(
                         circle at 40% 40%,
-                        rgba(0, 255, 136, 0.1) 0%,
+                        rgba(14, 165, 233, 0.06) 0%,
                         transparent 50%
                 );
 }
@@ -122,8 +125,8 @@ body {
 .bg-project-gradient {
         background: linear-gradient(
                 135deg,
-                rgba(0, 245, 255, 0.2),
-                rgba(255, 0, 128, 0.2)
+                rgba(56, 189, 248, 0.15),
+                rgba(129, 140, 248, 0.15)
         );
 }
 
@@ -136,15 +139,15 @@ body {
         bottom: 0;
         background: linear-gradient(
                 135deg,
-                rgba(0, 245, 255, 0.3),
-                rgba(255, 0, 128, 0.3)
+                rgba(56, 189, 248, 0.2),
+                rgba(129, 140, 248, 0.2)
         );
         z-index: 1;
 }
 
 .nav-link.active {
-        background: rgba(0, 245, 255, 0.2) !important;
-        color: #00f5ff !important;
+        background: rgba(56, 189, 248, 0.15) !important;
+        color: #38bdf8 !important;
 }
 
 .animate-on-scroll,
@@ -208,10 +211,10 @@ body {
         position: absolute;
         width: 2px;
         height: 2px;
-        background: #00f5ff;
+        background: #38bdf8;
         border-radius: 50%;
         animation: float 15s infinite linear;
-        opacity: 0.3;
+        opacity: 0.2;
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
+import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import projectDetails, { ProjectKey, ProjectDetail } from '../data/projects';
 
 type Project = { id: ProjectKey } & ProjectDetail;
@@ -27,6 +27,8 @@ const Projects: React.FC = () => {
             case 'on hold':
             case 'on-hold':
                 return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+            case 'open source':
+                return 'bg-teal-500/20 text-teal-400 border-teal-500/30';
             case 'archived':
                 return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
             default:
@@ -46,46 +48,80 @@ const Projects: React.FC = () => {
         document.body.style.overflow = 'auto';
     };
 
-    const ProjectCard = ({ project, index }: { project: Project; index: number }) => (
-        <div
-            className={`bg-white/5 rounded-2xl overflow-hidden backdrop-blur-xl border border-white/10 transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-[0_25px_50px_rgba(0,245,255,0.3)] hover:scale-105 animate-scale`}
-            style={{ animationDelay: `${index * 100}ms` }}
-            onClick={() => openProjectModal(project)}
-        >
-            <div className="w-full h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                {project.image ? (
-                    <Image 
-                        src={project.image} 
-                        alt={project.title} 
-                        width={400} 
-                        height={192} 
-                        className="w-full h-full object-cover" 
-                    />
-                ) : (
-                    <div className="text-6xl text-primary/50">📁</div>
-                )}
-            </div>
-            <div className="p-6">
-                {project.status && (
-                    <span className={`inline-block py-1 px-4 rounded-2xl text-xs font-semibold mb-4 border ${getStatusStyles(project.status)}`}>
-                        {project.status}
-                    </span>
-                )}
-                <h3 className="text-xl font-bold text-light mb-3">{project.title}</h3>
-                <p className="text-sm mb-4 line-clamp-3">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                        <span key={tech} className="bg-secondary/10 text-secondary py-1 px-3 rounded-full text-xs">
-                            {tech}
-                        </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                        <span className="text-xs text-gray-400">+{project.technologies.length - 3} more</span>
-                    )}
+    const bannerColors: Record<string, string> = {
+        cartwright:    'from-sky-900/60 to-indigo-900/60',
+        axiomgraph:    'from-cyan-900/60 to-teal-900/60',
+        llamacpp:      'from-slate-800/60 to-zinc-900/60',
+        nexuscommerce: 'from-blue-900/60 to-sky-800/60',
+        darkfire:      'from-rose-900/40 to-slate-900/60',
+    };
+
+    const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+        const gradient = bannerColors[project.id] ?? 'from-slate-800/60 to-slate-900/60';
+        const githubLink = project.links
+            ? Object.entries(project.links).find(([, url]) => url.includes('github.com'))
+            : null;
+
+        return (
+            <div
+                className="bg-white/5 rounded-2xl overflow-hidden backdrop-blur-xl border border-white/10 transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-[0_25px_50px_rgba(56,189,248,0.15)] hover:border-primary/30 hover:scale-[1.02] animate-scale"
+                style={{ animationDelay: `${index * 100}ms` }}
+                onClick={() => openProjectModal(project)}
+            >
+                {/* Banner */}
+                <div className={`w-full h-36 bg-gradient-to-br ${gradient} flex flex-col items-center justify-center gap-2 border-b border-white/10 relative overflow-hidden`}>
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
+                        backgroundSize: '24px 24px'
+                    }} />
+                    <div className="flex flex-wrap gap-1.5 justify-center px-4 relative z-10">
+                        {project.technologies.slice(0, 4).map((tech) => (
+                            <span key={tech} className="text-[10px] font-medium bg-white/10 text-sky-200 border border-white/15 px-2 py-0.5 rounded-full">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="p-6">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                            {project.status && (
+                                <span className={`inline-block py-1 px-3 rounded-full text-xs font-semibold border ${getStatusStyles(project.status)}`}>
+                                    {project.status}
+                                </span>
+                            )}
+                        </div>
+                        {githubLink && (
+                            <a
+                                href={githubLink[1]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                aria-label={`View ${project.title} on GitHub`}
+                                className="flex items-center gap-1.5 text-xs text-foreground/50 hover:text-primary border border-white/10 hover:border-primary/30 bg-white/5 hover:bg-primary/5 px-3 py-1.5 rounded-full transition-all duration-200 shrink-0"
+                            >
+                                <FiGithub size={12} />
+                                <span>Source</span>
+                            </a>
+                        )}
+                    </div>
+                    <h3 className="text-lg font-bold text-light mb-2">{project.title}</h3>
+                    <p className="text-sm mb-4 line-clamp-2 text-foreground/60 leading-relaxed">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                        {project.technologies.slice(0, 3).map((tech) => (
+                            <span key={tech} className="bg-primary/10 text-primary/80 py-0.5 px-2.5 rounded-full text-xs border border-primary/20">
+                                {tech}
+                            </span>
+                        ))}
+                        {project.technologies.length > 3 && (
+                            <span className="text-xs text-gray-500 py-0.5 px-1">+{project.technologies.length - 3} more</span>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     const ProjectModal = ({ project }: { project: Project }) => (
         <div
@@ -93,101 +129,80 @@ const Projects: React.FC = () => {
             onClick={closeProjectModal}
         >
             <style jsx>{`
-                .modal-scrollbar::-webkit-scrollbar { width: 8px; }
-                .modal-scrollbar::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
-                .modal-scrollbar::-webkit-scrollbar-thumb { 
-                    background: rgba(0, 245, 255, 0.3); 
-                    border-radius: 10px; 
-                    border: 2px solid transparent; 
-                    background-clip: content-box; 
+                .modal-scrollbar::-webkit-scrollbar { width: 6px; }
+                .modal-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .modal-scrollbar::-webkit-scrollbar-thumb {
+                    background: rgba(56,189,248,0.25);
+                    border-radius: 10px;
                 }
-                .modal-scrollbar::-webkit-scrollbar-thumb:hover { 
-                    background: rgba(0, 245, 255, 0.5); 
-                    background-clip: content-box; 
-                }
-                @keyframes scale {
-                    0% { opacity: 0; transform: scale(0.8); }
-                    100% { opacity: 1; transform: scale(1); }
-                }
-                .animate-scale {
-                    animation: scale 0.6s ease-out forwards;
-                    opacity: 0;
+                .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: rgba(56,189,248,0.4);
                 }
             `}</style>
-            
+
             <div
-                className="bg-white/10 rounded-2xl p-8 max-w-4xl w-[90%] max-h-[80vh] overflow-y-auto backdrop-blur-xl border border-white/20 relative modal-scrollbar"
+                className="bg-slate-900/95 rounded-2xl p-8 max-w-4xl w-[90%] max-h-[85vh] overflow-y-auto backdrop-blur-xl border border-white/15 relative modal-scrollbar"
                 onClick={(e) => e.stopPropagation()}
-                style={{ scrollbarWidth: 'thin', scrollbarColor: '#00f5ff40 transparent' }}
+                style={{ scrollbarWidth: 'thin', scrollbarColor: '#38bdf840 transparent' }}
             >
                 <button
-                    className="absolute top-4 right-6 text-light text-2xl hover:text-primary transition-colors"
+                    className="absolute top-4 right-5 text-foreground/50 text-2xl hover:text-primary transition-colors"
                     onClick={closeProjectModal}
+                    aria-label="Close modal"
                 >
                     ×
                 </button>
-                
-                <div className="w-full h-64 mb-6 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
-                    {project.image ? (
-                        <Image 
-                            src={project.image} 
-                            alt={project.title} 
-                            width={600} 
-                            height={256} 
-                            className="w-full h-full object-cover rounded-xl" 
-                        />
-                    ) : (
-                        <div className="text-8xl text-primary/50">📁</div>
-                    )}
-                </div>
 
-                {project.status && (
-                    <span className={`inline-block py-1 px-4 rounded-2xl text-sm font-semibold mb-4 border ${getStatusStyles(project.status)}`}>
-                        {project.status}
-                    </span>
-                )}
-
-                <h2 className="text-3xl text-primary mb-4">{project.title}</h2>
-                <p className="text-lg mb-6 leading-relaxed">{project.description}</p>
-
-                <div className="mb-6">
-                    <h4 className="text-accent mb-3 text-xl">Key Features</h4>
-                    <ul className="space-y-2">
-                        {project.features.map((feature, index) => (
-                            <li key={index} className="flex items-start">
-                                <span className="text-primary mr-2">▶</span>
-                                <span>{feature}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div className="mb-6">
-                    <h4 className="text-accent mb-3 text-xl">Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
+                {/* Modal banner */}
+                <div className={`w-full h-44 mb-6 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-800/60 to-slate-900/60'} rounded-xl flex flex-col items-center justify-center gap-3 border border-white/10 relative overflow-hidden`}>
+                    <div className="absolute inset-0 rounded-xl" style={{
+                        backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
+                        backgroundSize: '24px 24px'
+                    }} />
+                    <span className="text-2xl font-bold text-white/90 relative z-10">{project.title}</span>
+                    <div className="flex flex-wrap gap-2 justify-center px-6 relative z-10">
                         {project.technologies.map((tech) => (
-                            <span key={tech} className="bg-primary/10 text-primary py-2 px-3 rounded-lg text-sm border border-primary/30">
+                            <span key={tech} className="text-xs bg-white/10 text-sky-200 border border-white/15 px-2.5 py-1 rounded-full">
                                 {tech}
                             </span>
                         ))}
                     </div>
                 </div>
 
-                {project.links && (
-                    <div className="flex gap-4">
-                        {Object.entries(project.links).map(([buttonName, url]) => (
-                            <a
-                                key={buttonName}
-                                href={url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-6 py-3 bg-primary/20 text-primary rounded-lg font-medium border border-primary/30 hover:bg-primary/30 transition-all"
-                            >
-                                {buttonName}
-                            </a>
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
+                    {project.status && (
+                        <span className={`inline-block py-1 px-4 rounded-full text-sm font-semibold border ${getStatusStyles(project.status)}`}>
+                            {project.status}
+                        </span>
+                    )}
+                    {project.links && Object.entries(project.links).map(([buttonName, url]) => (
+                        <a
+                            key={buttonName}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 px-4 py-1.5 bg-primary/15 text-primary rounded-full text-sm font-medium border border-primary/25 hover:bg-primary/25 transition-all"
+                        >
+                            {url.includes('github.com') ? <FiGithub size={13} /> : <FiExternalLink size={13} />}
+                            {buttonName}
+                        </a>
+                    ))}
+                </div>
+
+                <h2 className="text-2xl font-bold text-light mb-3">{project.title}</h2>
+                <p className="text-base mb-6 leading-relaxed text-foreground/70">{project.description}</p>
+
+                <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-foreground/50 uppercase tracking-widest mb-3">Key Features</h4>
+                    <ul className="space-y-2">
+                        {project.features.map((feature, index) => (
+                            <li key={index} className="flex items-start gap-2 text-sm text-foreground/80">
+                                <span className="text-primary mt-0.5 shrink-0">›</span>
+                                <span>{feature}</span>
+                            </li>
                         ))}
-                    </div>
-                )}
+                    </ul>
+                </div>
             </div>
         </div>
     );

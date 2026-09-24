@@ -1,0 +1,184 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#060B0A"/>
+      <stop offset="100%" stop-color="#0A1510"/>
+    </linearGradient>
+    <radialGradient id="centerGlow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00FF87" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00FF87" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="outerGlow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00FF87" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#00FF87" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="fblur-sm">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="fblur-md">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="fblur-xl">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <pattern id="dots2" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="white" fill-opacity="0.045"/>
+    </pattern>
+    <!-- Edge gradient: green to cyan -->
+    <linearGradient id="edge1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00FF87"/>
+      <stop offset="100%" stop-color="#00E5FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <rect width="1200" height="630" fill="url(#dots2)"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="820" cy="285" rx="240" ry="200" fill="#00FF87" opacity="0.04" filter="url(#fblur-xl)"/>
+
+  <!-- ═══════════════════════════════════════════
+       GRAPH DIAGRAM  (6-node polygon + center)
+  ═══════════════════════════════════════════ -->
+
+  <!-- Center of graph -->
+  <!-- Cx=820, Cy=285 -->
+  <!-- 6 outer nodes at r=175, angles: 270°(top), 330°, 30°, 90°(bottom), 150°, 210° -->
+  <!-- Node coords:
+    N0 (top)         820, 110
+    N1 (upper-right) 971.5, 197.5
+    N2 (lower-right) 971.5, 372.5
+    N3 (bottom)      820, 460
+    N4 (lower-left)  668.5, 372.5
+    N5 (upper-left)  668.5, 197.5
+  -->
+
+  <!-- Outer ring (faint) -->
+  <circle cx="820" cy="285" r="215" stroke="white" stroke-width="0.6" stroke-opacity="0.05" fill="none" stroke-dasharray="3 12"/>
+
+  <!-- ALL edges (polygon + star connections through center) -->
+  <!-- Polygon edges -->
+  <line x1="820" y1="110" x2="971.5" y2="197.5" stroke="#00FF87" stroke-width="1.5" stroke-opacity="0.22"/>
+  <line x1="971.5" y1="197.5" x2="971.5" y2="372.5" stroke="#00FF87" stroke-width="1.5" stroke-opacity="0.22"/>
+  <line x1="971.5" y1="372.5" x2="820" y2="460" stroke="#00FF87" stroke-width="1.5" stroke-opacity="0.22"/>
+  <line x1="820" y1="460" x2="668.5" y2="372.5" stroke="#00FF87" stroke-width="1.5" stroke-opacity="0.22"/>
+  <line x1="668.5" y1="372.5" x2="668.5" y2="197.5" stroke="#00FF87" stroke-width="1.5" stroke-opacity="0.22"/>
+  <line x1="668.5" y1="197.5" x2="820" y2="110" stroke="#00FF87" stroke-width="1.5" stroke-opacity="0.22"/>
+
+  <!-- Spoke edges from center -->
+  <line x1="820" y1="285" x2="820" y2="110" stroke="#00FF87" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="820" y1="285" x2="971.5" y2="197.5" stroke="#00FF87" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="820" y1="285" x2="971.5" y2="372.5" stroke="#00E5FF" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="820" y1="285" x2="820" y2="460" stroke="#00E5FF" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="820" y1="285" x2="668.5" y2="372.5" stroke="#00E5FF" stroke-width="2" stroke-opacity="0.4"/>
+  <line x1="820" y1="285" x2="668.5" y2="197.5" stroke="#00FF87" stroke-width="2" stroke-opacity="0.4"/>
+
+  <!-- Cross-diagonal edges (highlighted ones) -->
+  <line x1="820" y1="110" x2="971.5" y2="372.5" stroke="#00FF87" stroke-width="1" stroke-opacity="0.1"/>
+  <line x1="971.5" y1="197.5" x2="820" y2="460" stroke="#00FF87" stroke-width="1" stroke-opacity="0.1"/>
+  <line x1="668.5" y1="197.5" x2="971.5" y2="372.5" stroke="#00E5FF" stroke-width="1" stroke-opacity="0.1"/>
+
+  <!-- Highlighted thick spoke (graph query path) -->
+  <line x1="820" y1="285" x2="971.5" y2="197.5" stroke="#00FF87" stroke-width="4" stroke-opacity="0.7" filter="url(#fblur-sm)"/>
+  <line x1="971.5" y1="197.5" x2="820" y2="110" stroke="#00FF87" stroke-width="4" stroke-opacity="0.7" filter="url(#fblur-sm)"/>
+
+  <!-- Scatter: vector embedding dots -->
+  <g fill="white">
+    <circle cx="730" cy="200" r="2" opacity="0.25"/>
+    <circle cx="755" cy="240" r="1.5" opacity="0.2"/>
+    <circle cx="760" cy="320" r="2" opacity="0.3"/>
+    <circle cx="745" cy="360" r="1.5" opacity="0.18"/>
+    <circle cx="880" cy="220" r="2" opacity="0.22"/>
+    <circle cx="900" cy="180" r="1.5" opacity="0.2"/>
+    <circle cx="895" cy="355" r="2" opacity="0.28"/>
+    <circle cx="870" cy="400" r="1.5" opacity="0.2"/>
+    <circle cx="820" cy="175" r="2" opacity="0.25"/>
+    <circle cx="820" cy="395" r="2" opacity="0.25"/>
+  </g>
+
+  <!-- Center node -->
+  <circle cx="820" cy="285" r="80" fill="url(#centerGlow2)" filter="url(#fblur-md)"/>
+  <circle cx="820" cy="285" r="38" fill="#07120F" stroke="#00FF87" stroke-width="2.5"/>
+  <circle cx="820" cy="285" r="10" fill="#00FF87" fill-opacity="0.9"/>
+  <!-- inner pulse ring -->
+  <circle cx="820" cy="285" r="20" stroke="#00FF87" stroke-width="1" stroke-opacity="0.4" fill="none"/>
+
+  <!-- Outer nodes -->
+  <!-- N0 top -->
+  <circle cx="820" cy="110" r="20" fill="#00FF87" fill-opacity="0.15" filter="url(#fblur-sm)"/>
+  <circle cx="820" cy="110" r="20" fill="#071510" stroke="#00FF87" stroke-width="2.5"/>
+  <circle cx="820" cy="110" r="7" fill="#00FF87"/>
+
+  <!-- N1 upper-right -->
+  <circle cx="971.5" cy="197.5" r="20" fill="#00FF87" fill-opacity="0.15" filter="url(#fblur-sm)"/>
+  <circle cx="971.5" cy="197.5" r="20" fill="#071510" stroke="#00FF87" stroke-width="2.5"/>
+  <circle cx="971.5" cy="197.5" r="7" fill="#00FF87"/>
+
+  <!-- N2 lower-right -->
+  <circle cx="971.5" cy="372.5" r="18" fill="#00E5FF" fill-opacity="0.12" filter="url(#fblur-sm)"/>
+  <circle cx="971.5" cy="372.5" r="18" fill="#071510" stroke="#00E5FF" stroke-width="2"/>
+  <circle cx="971.5" cy="372.5" r="5" fill="#00E5FF"/>
+
+  <!-- N3 bottom -->
+  <circle cx="820" cy="460" r="18" fill="#00E5FF" fill-opacity="0.12" filter="url(#fblur-sm)"/>
+  <circle cx="820" cy="460" r="18" fill="#071510" stroke="#00E5FF" stroke-width="2"/>
+  <circle cx="820" cy="460" r="5" fill="#00E5FF"/>
+
+  <!-- N4 lower-left -->
+  <circle cx="668.5" cy="372.5" r="18" fill="#00E5FF" fill-opacity="0.12" filter="url(#fblur-sm)"/>
+  <circle cx="668.5" cy="372.5" r="18" fill="#071510" stroke="#00E5FF" stroke-width="2"/>
+  <circle cx="668.5" cy="372.5" r="5" fill="#00E5FF"/>
+
+  <!-- N5 upper-left -->
+  <circle cx="668.5" cy="197.5" r="20" fill="#00FF87" fill-opacity="0.15" filter="url(#fblur-sm)"/>
+  <circle cx="668.5" cy="197.5" r="20" fill="#071510" stroke="#00FF87" stroke-width="2.5"/>
+  <circle cx="668.5" cy="197.5" r="7" fill="#00FF87"/>
+
+  <!-- ═══════════════════════════════
+       TEXT
+  ═══════════════════════════════ -->
+
+  <g transform="translate(56, 60)">
+    <!-- Eyebrow -->
+    <rect x="0" y="0" width="86" height="24" rx="4" fill="#00FF87" fill-opacity="0.1"/>
+    <rect x="0" y="0" width="86" height="24" rx="4" stroke="#00FF87" stroke-opacity="0.3" stroke-width="1" fill="none"/>
+    <text x="43" y="16.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#00FF87" letter-spacing="2" font-weight="600">C++ · CUDA</text>
+
+    <!-- Title -->
+    <text x="0" y="72" font-family="ui-sans-serif,system-ui,sans-serif" font-size="52" font-weight="900" fill="white" letter-spacing="-1">AxiomGraph</text>
+
+    <!-- Accent bar -->
+    <rect x="0" y="86" width="52" height="3" rx="2" fill="#00FF87"/>
+
+    <!-- Subtitle -->
+    <text x="0" y="118" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16" fill="white" fill-opacity="0.55" letter-spacing="0.3">Hybrid Graph-Vector Database</text>
+
+    <!-- Description -->
+    <text x="0" y="162" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13.5" fill="white" fill-opacity="0.38">Concurrent graph processing with</text>
+    <text x="0" y="182" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13.5" fill="white" fill-opacity="0.38">GPU-accelerated KNN vector search.</text>
+
+    <!-- Pills -->
+    <rect x="0" y="210" width="68" height="22" rx="5" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="34" y="225.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.7">C++17</text>
+
+    <rect x="78" y="210" width="60" height="22" rx="5" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="108" y="225.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.7">Python</text>
+
+    <rect x="148" y="210" width="54" height="22" rx="5" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="175" y="225.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.7">CUDA</text>
+
+    <rect x="212" y="210" width="74" height="22" rx="5" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="249" y="225.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.7">hnswlib</text>
+
+    <rect x="0" y="241" width="90" height="22" rx="5" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="45" y="256.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.7">nanobind</text>
+
+    <rect x="100" y="241" width="58" height="22" rx="5" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="129" y="256.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.7">CMake</text>
+  </g>
+
+  <!-- Bottom rule -->
+  <line x1="56" y1="590" x2="1144" y2="590" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <text x="56" y="614" font-family="ui-monospace,monospace" font-size="11" fill="white" fill-opacity="0.2" letter-spacing="1">github.com/Omar0Gamal/AxiomGraph</text>
+</svg>

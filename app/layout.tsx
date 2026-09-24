@@ -18,21 +18,22 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://omargamal.engineer'),
   title: {
-    default: 'Omar Gamal - Software Engineer & Game Engine Developer',
+    default: 'Omar Gamal - Backend & Infrastructure Engineer',
     template: '%s | Omar Gamal Portfolio'
   },
-  description: 'Software Engineer & Game Engine Developer with 7+ years experience in full-stack development, C++, DirectX, Unity, React, and enterprise solutions. Specializing in high-performance game engines and scalable web applications.',
+  description: 'Backend & Infrastructure Engineer with experience in Go, Kubernetes, and Distributed Systems. Specializing in highly scalable enterprise microservices.',
   keywords: [
     'software engineer',
-    'game engine developer',
-    'full-stack developer',
+    'backend engineer',
+    'infrastructure engineer',
+    'Go',
+    'Golang',
+    'Kubernetes',
+    'Docker',
+    'Terraform',
+    'Helm',
+    'distributed systems',
     'C++',
-    'DirectX',
-    'Unity',
-    'React',
-    'TypeScript',
-    'game development',
-    'web development',
     'Omar Gamal'
   ],
   authors: [{ name: 'Omar Gamal' }],
@@ -43,8 +44,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://omargamal.engineer',
     siteName: 'Omar Gamal Portfolio',
-    title: 'Omar Gamal - Software Engineer & Game Engine Developer',
-    description: 'Software Engineer specializing in game engines, full-stack development, and enterprise solutions.',
+    title: 'Omar Gamal - Backend & Infrastructure Engineer',
+    description: 'Backend & Infrastructure Engineer specializing in Go, Kubernetes, and Distributed Systems.',
     images: [
       {
         url: '/og-image.jpg',
@@ -56,15 +57,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omar Gamal - Software Engineer & Game Engine Developer',
-    description: 'Senior Software Engineer specializing in game engines and full-stack development.',
+    title: 'Omar Gamal - Backend & Infrastructure Engineer',
+    description: 'Backend & Infrastructure Engineer specializing in Go, Kubernetes, and Distributed Systems.',
     images: ['/og-image.jpg'],
     creator: '@OmarGam76954896',
   },
   other: {
     'linkedin:card': 'summary',
-    'linkedin:title': 'Omar Gamal - Software Engineer & Game Engine Developer',
-    'linkedin:description': 'Senior Software Engineer with 7+ years experience in game engines, C++, DirectX, Unity, React, and enterprise solutions.',
+    'linkedin:title': 'Omar Gamal - Backend & Infrastructure Engineer',
+    'linkedin:description': 'Backend & Infrastructure Engineer specializing in Go, Kubernetes, and Distributed Systems.',
     'linkedin:image': '/og-image.jpg',
     'linkedin:url': 'https://omargamal.engineer',
   },

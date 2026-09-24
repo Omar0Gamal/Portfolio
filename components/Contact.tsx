@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { FiMapPin, FiPhone, FiMail, FiSend } from 'react-icons/fi';
+
 
 interface FormData {
     name: string;
@@ -68,7 +70,7 @@ export default function Contact() {
                 return;
             }
 
-            const mailtoLink = `mailto:omar.gamal.m@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+            const mailtoLink = `mailto:omargamal.dev@outlook.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
                 `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
             )}`;
 
@@ -97,41 +99,40 @@ export default function Contact() {
                 
                 {showSuccess && (
                     <div className="mb-8 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-400 text-center">
-                        Thank you for your message! Your email client should open shortly.
+                        Message received. Your email client should open shortly.
                     </div>
                 )}
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10 animate-left">
                         <h3 className="text-2xl font-bold mb-6">
-                            Let&apos;s Build Something Amazing Together
+                            Open to new opportunities
                         </h3>
                         <p className="mb-8 text-gray-300 leading-relaxed">
-                            I&apos;m always excited to discuss new opportunities,
-                            innovative projects, or potential collaborations.
-                            Whether you need enterprise solutions or
-                            cutting-edge game development, let&apos;s connect!
+                            I&apos;m actively looking for backend and infrastructure engineering roles.
+                            If you&apos;re building distributed systems, working on developer tooling,
+                            or just want to talk about something interesting, reach out.
                         </p>
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-4">
                             <div className="flex items-center gap-4 p-3 rounded-lg bg-white/5">
-                                <span className="text-xl">📍</span>
-                                <span>Heliopolis, Cairo, Egypt</span>
+                                <FiMapPin size={18} className="text-primary/60 shrink-0" />
+                                <span>Cairo, Egypt</span>
                             </div>
                             <a
                                 href="tel:+201064444598"
                                 className="flex items-center gap-4 p-3 rounded-lg bg-white/5 text-light no-underline transition-all duration-300 hover:text-primary hover:bg-white/10"
                                 aria-label="Call Omar Gamal"
                             >
-                                <span className="text-xl">📞</span>
+                                <FiPhone size={18} className="shrink-0" />
                                 <span>+201064444598</span>
                             </a>
                             <a
-                                href="mailto:omar.gamal.m@gmail.com"
+                                href="mailto:omargamal.dev@outlook.com"
                                 className="flex items-center gap-4 p-3 rounded-lg bg-white/5 text-light no-underline transition-all duration-300 hover:text-primary hover:bg-white/10"
                                 aria-label="Email Omar Gamal"
                             >
-                                <span className="text-xl">✉</span>
-                                <span>omar.gamal.m@gmail.com</span>
+                                <FiMail size={18} className="shrink-0" />
+                                <span>omargamal.dev@outlook.com</span>
                             </a>
                         </div>
                     </div>
@@ -239,15 +240,18 @@ export default function Contact() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full p-4 bg-gradient-to-r from-primary to-secondary text-dark border-none rounded-full text-lg font-bold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,245,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                                className="w-full p-4 bg-gradient-to-r from-primary to-accent text-dark border-none rounded-full text-base font-bold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(56,189,248,0.3)] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                             >
                                 {isSubmitting ? (
-                                    <span className="flex items-center justify-center gap-2">
-                                        <span className="animate-spin">⏳</span>
+                                    <>
+                                        <span className="animate-spin inline-block">⏳</span>
                                         Sending...
-                                    </span>
+                                    </>
                                 ) : (
-                                    'Send Message'
+                                    <>
+                                        <FiSend size={16} />
+                                        Send Message
+                                    </>
                                 )}
                             </button>
                         </form>

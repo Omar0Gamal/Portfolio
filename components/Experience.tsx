@@ -12,8 +12,8 @@ const Experience: React.FC = () => {
                     Experience
                 </h2>
                 <div className="relative max-w-4xl mx-auto">
-                    {/* Timeline line - hidden on mobile */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-secondary transform -translate-x-1/2 hidden md:block"></div>
+                    {/* Timeline line */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-primary/10 transform -translate-x-1/2 hidden md:block" />
 
                     {experiences.map((experience, index) => (
                         <div
@@ -24,26 +24,39 @@ const Experience: React.FC = () => {
                                     : "md:pr-8 md:text-right animate-left"
                             } stagger-delay-${index + 1}`}
                         >
-                            {/* Timeline point - hidden on mobile */}
+                            {/* Timeline dot */}
                             <div
-                                className={`absolute top-12 w-4 h-4 bg-primary rounded-full border-4 border-dark shadow-lg z-10 hidden md:block ${
-                                    experience.isRight ? "-left-2" : "-right-2"
+                                className={`absolute top-12 w-3.5 h-3.5 bg-primary rounded-full border-4 border-dark shadow-[0_0_10px_rgba(56,189,248,0.5)] z-10 hidden md:block ${
+                                    experience.isRight ? "-left-[7px]" : "-right-[7px]"
                                 }`}
-                            ></div>
+                            />
 
-                            <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-xl border border-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,245,255,0.2)] hover:border-primary/30">
-                                <div className="text-primary font-semibold text-lg mb-2">
+                            <div className="bg-white/5 p-7 rounded-2xl backdrop-blur-xl border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,189,248,0.12)] hover:border-primary/25">
+                                <div className="text-primary font-semibold text-sm mb-1 tracking-wide uppercase">
                                     {experience.period}
                                 </div>
-                                <h3 className="text-2xl font-bold text-light mb-2">
+                                <h3 className="text-xl font-bold text-light mb-1">
                                     {experience.position}
                                 </h3>
-                                <div className="text-accent font-medium mb-4 text-lg">
+                                <div className="text-accent font-medium mb-4 text-base">
                                     {experience.company}
                                 </div>
-                                <p className="text-gray-300 leading-relaxed">
+                                <p className="text-foreground/70 leading-relaxed text-sm mb-4">
                                     {experience.description}
                                 </p>
+                                {/* Tech pills */}
+                                {experience.technologies && experience.technologies.length > 0 && (
+                                    <div className={`flex flex-wrap gap-1.5 ${experience.isRight ? "justify-start" : "md:justify-end"}`}>
+                                        {experience.technologies.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="bg-sky-950/60 text-sky-300 py-1 px-2.5 rounded-full text-xs border border-sky-700/30"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}

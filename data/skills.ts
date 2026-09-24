@@ -5,27 +5,27 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
     {
-        title: "Programming Languages",
-        skills: ["C++", "Java", "JavaScript", "Python", "C", "Go"]
+        title: "Languages",
+        skills: ["Go", "C++", "Java", "Python", "C#", "SQL"]
     },
     {
-        title: "Game Development",
-        skills: ["DirectX11", "Unity", "Unreal Engine", "ECS Architecture", "3D Graphics", "Game Engines"]
+        title: "Backend & APIs",
+        skills: ["REST", "OpenAPI", "gRPC", "Protocol Buffers", "Gin", "sqlc", "ASP.NET", "Microservices", "Distributed Systems"]
     },
     {
-        title: "Web Technologies",
-        skills: ["React.js", "Next.js", "Node.js", "Express.js", "TypeScript"]
+        title: "Messaging & Data",
+        skills: ["NATS JetStream", "PostgreSQL", "Redis", "SQLite", "MongoDB", "MySQL"]
     },
     {
-        title: "Databases & Caching",
-        skills: ["MongoDB", "MySQL", "PostgreSQL", "Redis"]
+        title: "Infrastructure",
+        skills: ["Docker", "Kubernetes", "Helm", "Terraform", "Linux", "Caddy", "Git", "GitHub Actions", "CI/CD"]
     },
     {
-        title: "DevOps & Infrastructure",
-        skills: ["Docker", "Kubernetes", "Linux", "Git"]        
+        title: "Observability",
+        skills: ["Prometheus", "Grafana", "Loki", "Promtail", "Request Tracing"]
     },
     {
-        title: "Testing & QA",
-        skills: ["Vitest", "Jest", "Cypress", "Unit Testing"]
+        title: "Systems",
+        skills: ["Multithreading", "Idempotency & Retry Design", "CMake"]
     }
 ];

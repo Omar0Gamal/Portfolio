@@ -56,12 +56,26 @@ export default function LatestArticles({ articles: initialArticles }: LatestArti
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className={`grid gap-8 ${
+                    articles.length === 1
+                        ? 'grid-cols-1 max-w-md mx-auto'
+                        : articles.length === 2
+                        ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto'
+                        : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                }`}>
                     {articles.map((article, index) => (
                         <div key={article.id} className={`animate-scale stagger-delay-${index + 1}`}>
                             <ArticleCard article={article} />
                         </div>
                     ))}
+                    {articles.length < 3 && (
+                        <div className={`animate-scale stagger-delay-${articles.length + 1} bg-white/3 border border-dashed border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 text-center ${
+                            articles.length === 1 ? 'hidden' : ''
+                        }`}>
+                            <span className="text-3xl opacity-30">✍️</span>
+                            <p className="text-sm text-foreground/40">More articles coming soon</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

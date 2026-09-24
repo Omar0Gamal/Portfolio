@@ -10,6 +10,7 @@ import ScrollProgress from '@/components/ScrollProgress'
 import BackgroundAnimation from '@/components/BackgroundAnimation'
 import LatestArticles from '@/components/LatestArticles'
 import Particles from '@/components/Particles'
+import Footer from '@/components/Footer'
 
 import { getLatestArticles } from '@/lib/articles'
 
@@ -21,7 +22,7 @@ export default async function Home() {
       <BackgroundAnimation />
       <Particles />
       <Navigation />
-      
+
       <main>
         <Hero />
         <About />
@@ -30,8 +31,10 @@ export default async function Home() {
         <Skills />
         <LatestArticles articles={articles} />
         <Education />
-        <Contact /> 
+        <Contact />
       </main>
+
+      <Footer />
     </>
   )
 }

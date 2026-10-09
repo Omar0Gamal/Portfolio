@@ -25,7 +25,7 @@ const highlights = [
     {
         icon: '🤝',
         label: 'Upstream Contribution',
-        text: 'Patched two out-of-bounds RPC memory bugs in llama.cpp, validated and merged into the main repository.',
+        text: 'Patched two out-of-bounds RPC memory bugs in llama.cpp by validating tensor shapes before graph execution.',
     },
 ];
 

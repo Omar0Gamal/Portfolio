@@ -40,13 +40,15 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
     axiomgraph: {
         title: "AxiomGraph",
         description:
-            "A hybrid graph-vector database written in C++17 with concurrent graph mutations alongside GPU-accelerated nearest-neighbour search and a Python SDK.",
+            "A hybrid graph-vector database in C++17 for GraphRAG with concurrent graph mutations, GPU-accelerated nearest-neighbour search, an HTTP server, and a Python SDK.",
         image: "/images/axiomgraph.svg",
         features: [
             "📊 Adjacency-list graph with CSR consolidation for cache efficiency",
-            "🔍 KNN search via hnswlib (CPU) and NVIDIA cuVS (GPU)",
+            "🔍 KNN search via HNSW (CPU) and NVIDIA cuVS (GPU)",
             "🔒 Lock-striped concurrent writes for high-throughput mutations",
-            "🐍 nanobind Python SDK (zero-copy interop)",
+            "📈 68.4% All-Gold-Found@10 on HotpotQA bridge questions (vs. 45.8% dense + rerank)",
+            "⚡ ~8,600 QPS (CPU) / 33,000+ QPS (GPU); 1M nodes in ~2 GB RAM",
+            "🐍 nanobind Python SDK (zero-copy interop) & HTTP server",
             "⚙️ CMake build with pre-built wheels published on GitHub Releases",
         ],
         technologies: ["C++17", "Python", "SQLite", "CMake", "CUDA"],

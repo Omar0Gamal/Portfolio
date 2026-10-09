@@ -6,11 +6,11 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
     {
         title: "Languages",
-        skills: ["Go", "C++", "Java", "Python", "C#", "SQL"]
+        skills: ["Go", "C++", "Java", "Python", "C#", "SQL", "CUDA"]
     },
     {
         title: "Backend & APIs",
-        skills: ["REST", "OpenAPI", "gRPC", "Protocol Buffers", "Gin", "sqlc", "ASP.NET", "Microservices", "Distributed Systems"]
+        skills: ["REST", "OpenAPI", "gRPC", "Protocol Buffers", "Gin", "sqlc", "ASP.NET", "Microservices", "Distributed Systems", "Role-Based Access Control", "Multi-Tenancy"]
     },
     {
         title: "Messaging & Data",
@@ -26,6 +26,6 @@ export const skillCategories: SkillCategory[] = [
     },
     {
         title: "Systems",
-        skills: ["Multithreading", "Idempotency & Retry Design", "CMake"]
+        skills: ["Multithreading", "Idempotency & Retry Design", "CMake", "Vector Search (HNSW)"]
     }
 ];

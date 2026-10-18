@@ -22,6 +22,7 @@ export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<FormErrors>({});
     const [showSuccess, setShowSuccess] = useState(false);
+    const [copiedEmail, setCopiedEmail] = useState(false);
 
     const validateForm = (formData: FormData): FormErrors => {
         const errors: FormErrors = {};
@@ -98,8 +99,22 @@ export default function Contact() {
                 </h2>
                 
                 {showSuccess && (
-                    <div className="mb-8 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-400 text-center">
-                        Message received. Your email client should open shortly.
+                    <div className="mb-8 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-300 text-center flex flex-col items-center gap-2">
+                        <span>Message prepared. Your email client should open shortly.</span>
+                        <span className="text-xs text-foreground/70">
+                            If your client didn&apos;t open automatically, write directly to{' '}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    navigator.clipboard.writeText('omargamal.dev@outlook.com');
+                                    setCopiedEmail(true);
+                                    setTimeout(() => setCopiedEmail(false), 2500);
+                                }}
+                                className="underline text-primary hover:text-accent font-medium cursor-pointer"
+                            >
+                                {copiedEmail ? 'Copied to clipboard!' : 'omargamal.dev@outlook.com'}
+                            </button>
+                        </span>
                     </div>
                 )}
                 
@@ -108,8 +123,8 @@ export default function Contact() {
                         <h3 className="text-2xl font-bold mb-6">
                             Open to new opportunities
                         </h3>
-                        <p className="mb-8 text-gray-300 leading-relaxed">
-                            I&apos;m actively looking for backend and infrastructure engineering roles.
+                        <p className="mb-8 text-foreground/75 leading-relaxed">
+                            I&apos;m actively looking for backend, cloud, and full-stack engineering roles.
                             If you&apos;re building distributed systems, working on developer tooling,
                             or just want to talk about something interesting, reach out.
                         </p>
@@ -124,7 +139,7 @@ export default function Contact() {
                                 aria-label="Call Omar Gamal"
                             >
                                 <FiPhone size={18} className="shrink-0" />
-                                <span>+201064444598</span>
+                                <span>+20 106 444 4598</span>
                             </a>
                             <a
                                 href="mailto:omargamal.dev@outlook.com"

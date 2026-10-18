@@ -8,6 +8,11 @@ const highlights = [
         text: 'Architected a 14-service platform (ERP, CRM, and document management), owning every layer from gRPC Protobuf contracts to Terraform + Helm on Kubernetes.',
     },
     {
+        icon: '🚀',
+        label: 'Full-Stack Delivery',
+        text: 'Shipped production-grade full-stack applications: Nexus Commerce with Cloudflare Worker edge multi-tenancy and JobTrack backed by 207 Vitest + 5 Playwright tests with a live interactive demo.',
+    },
+    {
         icon: '🔄',
         label: 'Open Source',
         text: 'Built Cartwright: a polyglot saga implementation in Go / C# / Python proving distributed checkout can recover cleanly from mid-flight failures.',
@@ -15,12 +20,12 @@ const highlights = [
     {
         icon: '📈',
         label: 'Academia',
-        text: 'GPA 3.92 / 4.0 (Dean\'s List), final-year Computer Science with a focus on systems programming and distributed computing.',
+        text: 'GPA 3.92 / 4.0 (Dean\'s List), final-year Computer Science with a focus on systems programming and distributed computing (expected 2027).',
     },
     {
         icon: '🎮',
         label: 'Game Infrastructure',
-        text: 'Shipped 15+ Spigot plugins for a 500+ concurrent-player game server, cutting crash rate by 60% and response time by 40%.',
+        text: 'Shipped 15+ Java backend services/Spigot plugins for a 500+ concurrent-player game server, resulting in 60% fewer crashes and 40% lower latency.',
     },
     {
         icon: '🤝',
@@ -44,12 +49,11 @@ const About: React.FC = () => {
                     {/* Bio + contact - self-stretches to match highlights top */}
                     <div className="lg:col-span-1 bg-white/5 p-8 rounded-2xl backdrop-blur-xl border border-white/10 animate-left self-start">
                         <p className="text-sm leading-relaxed mb-6 text-foreground/70">
-                            Final-year CS student building production-grade backend systems.
+                            Final-year CS student building production-grade backend and cloud systems with proven full-stack delivery.
                             I care about correctness under failure, whether that&apos;s
                             compensating transactions in a distributed checkout or
                             idempotency keys that survive network retries.
-                            My work lives at the intersection of reliable architecture
-                            and clean, deployable code.
+                            Across the stack, I ship tested, documented, and reliably deployed web applications from database schemas to edge routing.
                         </p>
                         <div className="flex flex-col gap-3 pt-4 border-t border-white/8">
                             <a

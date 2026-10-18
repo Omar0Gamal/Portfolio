@@ -40,23 +40,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             ? `${plainTextContent.substring(0, 157)}...` 
             : plainTextContent)
 
+    const articleUrl = `https://omar0gamal.vercel.app/articles/${resolvedParams.slug}`
+
     return {
-        title: `${article.title} | Your Blog`,
+        title: `${article.title} | Omar Gamal`,
         description,
-        authors: article.author ? [{ name: article.author }] : undefined,
+        alternates: {
+            canonical: articleUrl,
+        },
+        authors: article.author ? [{ name: article.author }] : [{ name: 'Omar Gamal' }],
         keywords: Array.isArray(article.tags) ? article.tags : undefined,
         openGraph: {
             title: article.title,
             description,
+            url: articleUrl,
             type: 'article',
             publishedTime: article.publishedAt,
-            authors: article.author ? [article.author] : undefined,
-            tags: Array.isArray(article.tags) ? article.tags : undefined
+            authors: article.author ? [article.author] : ['Omar Gamal'],
+            tags: Array.isArray(article.tags) ? article.tags : undefined,
+            images: [
+                {
+                    url: '/og-image.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: article.title,
+                },
+            ],
         },
         twitter: {
             card: 'summary_large_image',
             title: article.title,
-            description
+            description,
+            images: ['/og-image.jpg'],
         }
     }
 }

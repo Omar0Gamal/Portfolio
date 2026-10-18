@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
 const Hero: React.FC = () => {
     return (
@@ -15,14 +15,14 @@ const Hero: React.FC = () => {
                     className="text-2xl md:text-4xl font-semibold mb-6 text-gray animate-fade-in-up"
                     style={{ animationDelay: '0.5s' }}
                 >
-                    Backend &amp; Infrastructure Engineer
+                    Backend, Cloud &amp; Full-Stack Engineer
                 </h2>
                 <p
                     className="text-lg md:text-xl mb-8 text-light/80 animate-fade-in-up max-w-2xl mx-auto leading-relaxed"
                     style={{ animationDelay: '1s' }}
                 >
                     I design distributed systems that hold under failure, from service architecture
-                    and gRPC contracts to Kubernetes deployments.
+                    and gRPC contracts to Kubernetes deployments and tested full-stack applications.
                 </p>
 
                 {/* Social quick-links */}
@@ -76,14 +76,6 @@ const Hero: React.FC = () => {
                         className="px-8 py-4 rounded-full font-semibold no-underline transition-all duration-300 cursor-pointer bg-transparent text-primary border-2 border-primary/60 hover:border-primary hover:bg-primary/10 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(56,189,248,0.2)]"
                     >
                         Get In Touch
-                    </a>
-                    <a
-                        href="/cv.pdf"
-                        download
-                        className="flex items-center gap-2 px-8 py-4 rounded-full font-semibold no-underline transition-all duration-300 cursor-pointer bg-white/5 text-foreground/70 border border-white/15 hover:bg-white/10 hover:text-foreground hover:-translate-y-1"
-                    >
-                        <FiDownload size={16} />
-                        Download CV
                     </a>
                 </div>
             </div>

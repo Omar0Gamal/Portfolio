@@ -8,10 +8,61 @@ export interface ProjectDetail {
     status?: ProjectStatus;
 }
 
-export type ProjectKey = 'cartwright' | 'axiomgraph' | 'llamacpp' | 'nexuscommerce' | 'darkfire';
+export type ProjectKey = 'nexuscommerce' | 'jobtrack' | 'cartwright' | 'axiomgraph' | 'llamacpp' | 'darkfire';
 export type ProjectStatus = "In Development" | "Completed" | "Research" | "Open Source";
 
 const projectDetails: Record<ProjectKey, ProjectDetail> = {
+    nexuscommerce: {
+        title: "Nexus Commerce",
+        description:
+            "A multi-tenant e-commerce platform with a 25-module Go modular monolith API, Cloudflare Worker edge tenant routing via KV, Redis distributed inventory locks and job queue, merchant operations console, and Next.js 16 customer storefront.",
+        image: "/images/nexuscommerce.png",
+        features: [
+            "🏢 Multi-tenant architecture with edge routing via Cloudflare Worker + KV and Caddy custom domains",
+            "⚡ 25-module Go modular monolith API with Gin and sqlc for type-safe SQL queries",
+            "🔒 Distributed Redis mutex locks preventing inventory overselling under high concurrency",
+            "📨 Redis-backed asynchronous job queue for order lifecycle and transactional events",
+            "🛍️ Next.js 16 App Router customer storefront with React 19, TanStack Query, and Tailwind CSS 4",
+            "📊 Merchant admin console for product variant pricing, inventory tracking, and order fulfillment",
+            "💳 Paymob payment gateway integration with signature-verified webhooks",
+            "📈 End-to-end observability via Prometheus metrics, Promtail, and Grafana",
+        ],
+        technologies: [
+            "Go", "Next.js 16", "TypeScript",
+            "Cloudflare Workers", "PostgreSQL", "Redis",
+            "sqlc", "Tailwind CSS", "Docker", "Caddy"
+        ],
+        links: {
+            "View Source": "https://github.com/Omar0Gamal/Nexus-Commerce",
+        },
+        status: "Completed",
+    },
+    jobtrack: {
+        title: "JobTrack",
+        description:
+            "A production-grade job application tracker and career pipeline command center featuring zero-signup guest evaluation with signed sessions, SSRF-hardened URL autofill, and comprehensive test coverage.",
+        image: "/images/jobtrack.png",
+        features: [
+            "🧪 207 Vitest unit & integration tests plus 5 Playwright E2E suites enforcing regression-free CI",
+            "👤 Zero-signup demo mode with HMAC-SHA256 signed guest sessions and pre-seeded realistic workflows",
+            "🛡️ SSRF-hardened company metadata auto-fetcher validating IP ranges at the network boundary",
+            "🔐 Auth.js v5 authentication with Google/GitHub OAuth and strict private allowlist enforcement",
+            "📊 Analytics funnel with stage conversion rates, weekly velocity, and resume A/B callback metrics",
+            "📋 TanStack Table with URL-persisted search facets, multi-column sorting, and sticky company headers",
+            "📅 Timezone-normalized calendar month grid and chronological mobile agenda for interview rounds",
+            "🗄️ PostgreSQL (Neon) persistence with Prisma ORM, optimistic UI updates, and autosaving drawers",
+        ],
+        technologies: [
+            "Next.js 15", "TypeScript", "Prisma",
+            "PostgreSQL", "Auth.js", "Vitest",
+            "Playwright", "Tailwind CSS", "Neon"
+        ],
+        links: {
+            "Live Demo": "https://jobtrack-demo.vercel.app",
+            "View Source": "https://github.com/Omar0Gamal/JobTrack",
+        },
+        status: "Completed",
+    },
     cartwright: {
         title: "Cartwright",
         description:
@@ -33,7 +84,7 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
             "Kubernetes", "Helm", "Terraform"
         ],
         links: {
-            "View Source": "https://github.com/Omar0Gamal/cartwright",
+            "View Source": "https://github.com/Omar0Gamal/cartwright-saga",
         },
         status: "Completed",
     },
@@ -72,31 +123,6 @@ const projectDetails: Record<ProjectKey, ProjectDetail> = {
             "View Pull Request": "https://github.com/ggml-org/llama.cpp/pull/26933"
         },
         status: "Open Source",
-    },
-    nexuscommerce: {
-        title: "NexusCommerce",
-        description:
-            "A multi-tenant e-commerce platform where each merchant gets an isolated storefront, custom domain, and full order pipeline. Backend and infrastructure are production-ready; new Next.js 15 frontend is in active development.",
-        image: "/images/nexuscommerce.png",
-        features: [
-            "🏢 Tenant isolation via subdomain and custom domain routing with Caddy",
-            "🔄 Event-driven services connected through RabbitMQ",
-            "🔐 JWT auth with role-based access (Admin, Merchant, Customer)",
-            "💳 Integrated Paymob payment processing",
-            "⚡ Redis caching layer over PostgreSQL + GORM",
-            "📦 Full Docker Compose deployment with Caddy reverse proxy",
-            "📊 Per-tenant analytics, inventory tracking, and storefront branding",
-            "⚛️ Next.js 15 frontend (currently under active development)",
-        ],
-        technologies: [
-            "Go", "Next.js 15", "TypeScript",
-            "PostgreSQL", "Redis", "RabbitMQ",
-            "Docker", "Caddy"
-        ],
-        links: {
-            "View Source": "https://github.com/Omar0Gamal/Nexus-Commerce",
-        },
-        status: "In Development",
     },
     darkfire: {
         title: "DarkFire",

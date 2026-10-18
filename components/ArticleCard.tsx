@@ -51,6 +51,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
 
             <Link 
                 href={`/articles/${article.slug}`}
+                aria-label={`Read full article: ${article.title}`}
                 className="inline-flex items-center text-primary hover:text-accent font-medium transition-colors duration-300 hover:translate-x-1"
             >
                 Read More →

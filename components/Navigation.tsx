@@ -58,6 +58,17 @@ const Navigation = () => {
         return () => window.removeEventListener('scroll', throttledHandleScroll);
     }, [handleScroll]);
 
+    useEffect(() => {
+        if (!menuOpen) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setMenuOpen(false);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [menuOpen]);
+
     const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
         const target = document.querySelector(href);
@@ -75,7 +86,9 @@ const Navigation = () => {
             {/* Hamburger for mobile */}
             <button
                 className="fixed top-5 right-5 z-[1100] flex flex-col justify-center items-center w-12 h-12 bg-dark/80 rounded-full border border-white/10 md:hidden"
-                aria-label="Open navigation menu"
+                aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-nav"
                 onClick={() => setMenuOpen((v) => !v)}
             >
                 <span className="block w-6 h-0.5 bg-white mb-1 rounded transition-all" />
@@ -130,6 +143,7 @@ const Navigation = () => {
                             onClick={() => setMenuOpen(false)}
                         />
                         <motion.nav
+                            id="mobile-nav"
                             initial={{ x: '100%' }}
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}

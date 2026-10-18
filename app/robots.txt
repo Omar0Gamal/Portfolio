@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://omargamal.engineer/sitemap.xml
+Sitemap: https://omar0gamal.vercel.app/sitemap.xml

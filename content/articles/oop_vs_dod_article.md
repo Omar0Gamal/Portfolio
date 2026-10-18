@@ -6,8 +6,6 @@ tags: [gamedev, cpp, performance, ecs, dataorienteddesign, cachelocality]
 excerpt: "Discover why Data-Oriented Design dramatically outperforms traditional OOP in game engines, with real performance metrics and code examples."
 ---
 
-# OOP vs DoD in Game Development: Why Data Layout Matters More Than You Think
-
 Most developers obsess over algorithmic complexity and CPU clock speeds, but there's a hidden performance killer that's often overlooked: **how you organize data in memory**. This becomes especially critical in real-time systems like games, where every microsecond counts and frame drops are unacceptable.
 
 In this deep dive, I'll demonstrate why Data-Oriented Design (DoD) can dramatically outperform traditional Object-Oriented Programming (OOP) approaches, using concrete examples and performance metrics that will change how you think about game engine architecture.

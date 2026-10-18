@@ -1,5 +1,5 @@
 import React from "react";
-import { experiences } from "@/data/experince";
+import { experiences } from "@/data/experience";
 
 const Experience: React.FC = () => {
     return (

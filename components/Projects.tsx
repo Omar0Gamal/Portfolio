@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import projectDetails, { ProjectKey, ProjectDetail } from '../data/projects';
 
@@ -9,6 +10,7 @@ type Project = { id: ProjectKey } & ProjectDetail;
 const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [expandedTags, setExpandedTags] = useState<Record<string, boolean>>({});
 
     const projects: Project[] = Object.entries(projectDetails).map(([key, detail]) => ({
         id: key as ProjectKey,
@@ -49,10 +51,11 @@ const Projects: React.FC = () => {
     };
 
     const bannerColors: Record<string, string> = {
+        nexuscommerce: 'from-blue-900/60 to-sky-800/60',
+        jobtrack:      'from-emerald-950/60 to-teal-900/60',
         cartwright:    'from-sky-900/60 to-indigo-900/60',
         axiomgraph:    'from-cyan-900/60 to-teal-900/60',
         llamacpp:      'from-slate-800/60 to-zinc-900/60',
-        nexuscommerce: 'from-blue-900/60 to-sky-800/60',
         darkfire:      'from-rose-900/40 to-slate-900/60',
     };
 
@@ -61,6 +64,14 @@ const Projects: React.FC = () => {
         const githubLink = project.links
             ? Object.entries(project.links).find(([, url]) => url.includes('github.com'))
             : null;
+        const liveDemoLink = project.links
+            ? Object.entries(project.links).find(([name]) => name.toLowerCase().includes('demo'))
+            : null;
+
+        const isTagsExpanded = !!expandedTags[project.id];
+        const visibleTechs = isTagsExpanded
+            ? project.technologies
+            : project.technologies.slice(0, 3);
 
         return (
             <div
@@ -69,14 +80,27 @@ const Projects: React.FC = () => {
                 onClick={() => openProjectModal(project)}
             >
                 {/* Banner */}
-                <div className={`w-full h-36 bg-gradient-to-br ${gradient} flex flex-col items-center justify-center gap-2 border-b border-white/10 relative overflow-hidden`}>
-                    <div className="absolute inset-0" style={{
-                        backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
-                        backgroundSize: '24px 24px'
-                    }} />
-                    <div className="flex flex-wrap gap-1.5 justify-center px-4 relative z-10">
+                <div className={`w-full h-44 bg-gradient-to-br ${gradient} border-b border-white/10 relative overflow-hidden group`}>
+                    {project.image ? (
+                        <>
+                            <Image
+                                src={project.image}
+                                alt={`${project.title} preview`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-dark/95 via-dark/40 to-transparent pointer-events-none" />
+                        </>
+                    ) : (
+                        <div className="absolute inset-0" style={{
+                            backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
+                            backgroundSize: '24px 24px'
+                        }} />
+                    )}
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5 justify-center z-10">
                         {project.technologies.slice(0, 4).map((tech) => (
-                            <span key={tech} className="text-[10px] font-medium bg-white/10 text-sky-200 border border-white/15 px-2 py-0.5 rounded-full">
+                            <span key={tech} className="text-[10px] font-medium bg-black/60 backdrop-blur-md text-sky-200 border border-white/15 px-2 py-0.5 rounded-full">
                                 {tech}
                             </span>
                         ))}
@@ -92,30 +116,58 @@ const Projects: React.FC = () => {
                                 </span>
                             )}
                         </div>
-                        {githubLink && (
-                            <a
-                                href={githubLink[1]}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                                aria-label={`View ${project.title} on GitHub`}
-                                className="flex items-center gap-1.5 text-xs text-foreground/50 hover:text-primary border border-white/10 hover:border-primary/30 bg-white/5 hover:bg-primary/5 px-3 py-1.5 rounded-full transition-all duration-200 shrink-0"
-                            >
-                                <FiGithub size={12} />
-                                <span>Source</span>
-                            </a>
-                        )}
+                        <div className="flex items-center gap-2 shrink-0">
+                            {liveDemoLink && (
+                                <a
+                                    href={liveDemoLink[1]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    aria-label={`View ${project.title} Live Demo`}
+                                    className="flex items-center gap-1.5 text-xs text-primary hover:text-white border border-primary/30 hover:border-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-all duration-200 font-medium"
+                                >
+                                    <FiExternalLink size={12} />
+                                    <span>Live Demo</span>
+                                </a>
+                            )}
+                            {githubLink && (
+                                <a
+                                    href={githubLink[1]}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    aria-label={`View ${project.title} on GitHub`}
+                                    className="flex items-center gap-1.5 text-xs text-foreground/50 hover:text-primary border border-white/10 hover:border-primary/30 bg-white/5 hover:bg-primary/5 px-3 py-1.5 rounded-full transition-all duration-200 shrink-0"
+                                >
+                                    <FiGithub size={12} />
+                                    <span>Source</span>
+                                </a>
+                            )}
+                        </div>
                     </div>
                     <h3 className="text-lg font-bold text-light mb-2">{project.title}</h3>
                     <p className="text-sm mb-4 line-clamp-2 text-foreground/60 leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.slice(0, 3).map((tech) => (
+                    <div className="flex flex-wrap gap-1.5 items-center">
+                        {visibleTechs.map((tech) => (
                             <span key={tech} className="bg-primary/10 text-primary/80 py-0.5 px-2.5 rounded-full text-xs border border-primary/20">
                                 {tech}
                             </span>
                         ))}
                         {project.technologies.length > 3 && (
-                            <span className="text-xs text-gray-500 py-0.5 px-1">+{project.technologies.length - 3} more</span>
+                            <button
+                                type="button"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setExpandedTags((prev) => ({
+                                        ...prev,
+                                        [project.id]: !prev[project.id],
+                                    }));
+                                }}
+                                className="text-xs text-primary/80 hover:text-primary py-0.5 px-2 rounded-full border border-primary/25 hover:border-primary/50 bg-primary/10 transition-colors cursor-pointer"
+                                aria-label={isTagsExpanded ? `Show fewer tags for ${project.title}` : `Show all ${project.technologies.length} tags for ${project.title}`}
+                            >
+                                {isTagsExpanded ? 'Show less' : `+${project.technologies.length - 3} more`}
+                            </button>
                         )}
                     </div>
                 </div>
@@ -154,15 +206,28 @@ const Projects: React.FC = () => {
                 </button>
 
                 {/* Modal banner */}
-                <div className={`w-full h-44 mb-6 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-800/60 to-slate-900/60'} rounded-xl flex flex-col items-center justify-center gap-3 border border-white/10 relative overflow-hidden`}>
-                    <div className="absolute inset-0 rounded-xl" style={{
-                        backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
-                        backgroundSize: '24px 24px'
-                    }} />
-                    <span className="text-2xl font-bold text-white/90 relative z-10">{project.title}</span>
-                    <div className="flex flex-wrap gap-2 justify-center px-6 relative z-10">
+                <div className={`w-full h-56 mb-6 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-800/60 to-slate-900/60'} rounded-xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-end p-4`}>
+                    {project.image ? (
+                        <>
+                            <Image
+                                src={project.image}
+                                alt={`${project.title} preview`}
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 800px"
+                                className="object-cover object-top opacity-80"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent pointer-events-none" />
+                        </>
+                    ) : (
+                        <div className="absolute inset-0 rounded-xl" style={{
+                            backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
+                            backgroundSize: '24px 24px'
+                        }} />
+                    )}
+                    <span className="text-2xl font-bold text-white relative z-10 mb-2 drop-shadow-md">{project.title}</span>
+                    <div className="flex flex-wrap gap-2 justify-center px-4 relative z-10">
                         {project.technologies.map((tech) => (
-                            <span key={tech} className="text-xs bg-white/10 text-sky-200 border border-white/15 px-2.5 py-1 rounded-full">
+                            <span key={tech} className="text-xs bg-black/60 backdrop-blur-md text-sky-200 border border-white/20 px-2.5 py-1 rounded-full">
                                 {tech}
                             </span>
                         ))}

@@ -2,8 +2,6 @@
 
 import ShareButtons from '@/components/ShareButtons'
 import ScrollSpyToc from '@/components/ScrollSpyToc'
-import BackgroundAnimation from '@/components/BackgroundAnimation'
-import Particles from '@/components/Particles'
 import { ProcessedArticle } from '@/lib/articles'
 
 interface ArticleProps {
@@ -13,8 +11,6 @@ interface ArticleProps {
 export default function ArticleC({ article }: ArticleProps) {
     return (
         <>
-            <BackgroundAnimation />
-            <Particles />
             <style jsx global>{`
                 /* Custom scrollbar for content */
                 .article-content::-webkit-scrollbar {

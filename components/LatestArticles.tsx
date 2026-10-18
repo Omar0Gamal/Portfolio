@@ -68,15 +68,13 @@ export default function LatestArticles({ articles: initialArticles }: LatestArti
                             <ArticleCard article={article} />
                         </div>
                     ))}
-                    {articles.length < 3 && (
-                        <div className={`animate-scale stagger-delay-${articles.length + 1} bg-white/3 border border-dashed border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 text-center ${
-                            articles.length === 1 ? 'hidden' : ''
-                        }`}>
-                            <span className="text-3xl opacity-30">✍️</span>
-                            <p className="text-sm text-foreground/40">More articles coming soon</p>
-                        </div>
-                    )}
                 </div>
+
+                {articles.length < 3 && (
+                    <p className="text-center text-xs text-foreground/70 mt-8">
+                        Deep-dives on distributed systems, Go, and software architecture published periodically.
+                    </p>
+                )}
             </div>
         </section>
     );

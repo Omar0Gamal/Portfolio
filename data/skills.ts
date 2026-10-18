@@ -6,19 +6,27 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
     {
         title: "Languages",
-        skills: ["Go", "C++", "Java", "Python", "C#", "SQL", "CUDA"]
+        skills: ["Go", "TypeScript", "C++", "Java", "Python", "C#", "SQL", "CUDA"]
     },
     {
         title: "Backend & APIs",
-        skills: ["REST", "OpenAPI", "gRPC", "Protocol Buffers", "Gin", "sqlc", "ASP.NET", "Microservices", "Distributed Systems", "Role-Based Access Control", "Multi-Tenancy"]
+        skills: ["REST", "OpenAPI", "gRPC", "Protocol Buffers", "Gin", "sqlc", "Auth.js", "ASP.NET", "Microservices", "Distributed Systems", "Role-Based Access Control", "Multi-Tenancy"]
+    },
+    {
+        title: "Frontend",
+        skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "TanStack Query"]
+    },
+    {
+        title: "Testing",
+        skills: ["Vitest", "Playwright", "Chaos Engineering"]
     },
     {
         title: "Messaging & Data",
-        skills: ["NATS JetStream", "PostgreSQL", "Redis", "SQLite", "MongoDB", "MySQL"]
+        skills: ["PostgreSQL", "Redis", "Prisma", "SQLite", "NATS JetStream"]
     },
     {
-        title: "Infrastructure",
-        skills: ["Docker", "Kubernetes", "Helm", "Terraform", "Linux", "Caddy", "Git", "GitHub Actions", "CI/CD"]
+        title: "Cloud & Infrastructure",
+        skills: ["Docker", "Kubernetes", "Helm", "Terraform", "Cloudflare Workers", "Cloudflare KV", "Cloudflare R2", "Linux", "Caddy", "CI/CD", "GitHub Actions"]
     },
     {
         title: "Observability",

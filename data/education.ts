@@ -37,9 +37,7 @@ export const education: Education[] = [
     }
 ];
 
-export const certifications: Certification[] = [
-    // TODO: Add certifications here
-];
+export const certifications: Certification[] = [];
 
 export const courses: Course[] = [
     { name: "Operating Systems", provider: "Capital University", date: "" },
@@ -49,9 +47,3 @@ export const courses: Course[] = [
     { name: "Computer Networks", provider: "Capital University", date: "" },
     { name: "Compiler Design", provider: "Capital University", date: "" },
 ];
-
-export const getEducationData = () => ({
-    education,
-    certifications,
-    courses
-});

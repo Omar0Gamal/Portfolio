@@ -21,6 +21,13 @@ const Particles = ({
         const container = containerRef.current
         if (!container) return
 
+        // Respect user preference for reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        if (prefersReducedMotion) {
+            container.innerHTML = ''
+            return
+        }
+
         // Clear existing particles
         container.innerHTML = ''
 

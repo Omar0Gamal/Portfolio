@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
                 {/* Brand */}
                 <div className="text-center md:text-left">
                     <span className="text-primary font-bold text-lg">Omar Gamal</span>
-                    <p className="text-xs text-foreground/40 mt-1">Backend &amp; Infrastructure Engineer</p>
+                    <p className="text-xs text-foreground/70 mt-1">Backend, Cloud &amp; Full-Stack Engineer</p>
                 </div>
 
                 {/* Social links */}
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub"
-                        className="text-foreground/40 hover:text-primary transition-colors duration-200"
+                        className="text-foreground/70 hover:text-primary transition-colors duration-200"
                     >
                         <FiGithub size={18} />
                     </a>
@@ -29,21 +29,21 @@ const Footer: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn"
-                        className="text-foreground/40 hover:text-primary transition-colors duration-200"
+                        className="text-foreground/70 hover:text-primary transition-colors duration-200"
                     >
                         <FiLinkedin size={18} />
                     </a>
                     <a
                         href="mailto:omargamal.dev@outlook.com"
                         aria-label="Email"
-                        className="text-foreground/40 hover:text-primary transition-colors duration-200"
+                        className="text-foreground/70 hover:text-primary transition-colors duration-200"
                     >
                         <FiMail size={18} />
                     </a>
                 </div>
 
                 {/* Copyright */}
-                <p className="text-xs text-foreground/30 text-center md:text-right">
+                <p className="text-xs text-foreground/70 text-center md:text-right">
                     &copy; {currentYear} Omar Gamal. Built with Next.js.
                 </p>
             </div>

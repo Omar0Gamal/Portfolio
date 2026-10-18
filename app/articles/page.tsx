@@ -4,10 +4,34 @@ import ScrollProgress from '@/components/ScrollProgress';
 import BackgroundAnimation from '@/components/BackgroundAnimation';
 import Particles from '@/components/Particles';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
-export const metadata = {
-    title: 'Articles',
-    description: 'Browse all articles'
+export const metadata: Metadata = {
+    title: 'Technical Articles | Omar Gamal',
+    description: 'Technical writing and deep-dives on systems programming, distributed systems, and software engineering by Omar Gamal.',
+    alternates: {
+        canonical: 'https://omar0gamal.vercel.app/articles',
+    },
+    openGraph: {
+        title: 'Technical Articles | Omar Gamal',
+        description: 'Technical writing and deep-dives on systems programming, distributed systems, and software engineering.',
+        url: 'https://omar0gamal.vercel.app/articles',
+        type: 'website',
+        images: [
+            {
+                url: '/og-image.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Technical Articles - Omar Gamal',
+            },
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Technical Articles | Omar Gamal',
+        description: 'Technical writing and deep-dives on systems programming, distributed systems, and software engineering.',
+        images: ['/og-image.jpg'],
+    },
 };
 
 export default async function ArticlesPage() {

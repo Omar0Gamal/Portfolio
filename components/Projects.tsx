@@ -67,16 +67,16 @@ const Projects: React.FC = () => {
     };
 
     const bannerColors: Record<string, string> = {
-        nexuscommerce: 'from-blue-900/60 to-sky-800/60',
-        jobtrack:      'from-emerald-950/60 to-teal-900/60',
-        cartwright:    'from-sky-900/60 to-indigo-900/60',
-        axiomgraph:    'from-cyan-900/60 to-teal-900/60',
-        llamacpp:      'from-slate-800/60 to-zinc-900/60',
-        darkfire:      'from-rose-900/40 to-slate-900/60',
+        nexuscommerce: 'from-blue-900/50 to-sky-800/40',
+        jobtrack:      'from-emerald-950/50 to-teal-900/40',
+        cartwright:    'from-sky-900/50 to-indigo-900/40',
+        axiomgraph:    'from-cyan-900/50 to-teal-900/40',
+        llamacpp:      'from-slate-800/50 to-zinc-900/40',
+        darkfire:      'from-rose-900/30 to-slate-900/40',
     };
 
     const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-        const gradient = bannerColors[project.id] ?? 'from-slate-800/60 to-slate-900/60';
+        const gradient = bannerColors[project.id] ?? 'from-slate-800/50 to-slate-900/40';
         const githubLink = project.links
             ? Object.entries(project.links).find(([, url]) => url.includes('github.com'))
             : null;
@@ -95,13 +95,9 @@ const Projects: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px', amount: 0.08 }}
                 transition={{ duration: 0.5, delay: (index % 2) * 0.08, ease: defaultEase }}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group relative rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-2xl bg-gradient-to-b from-slate-900/60 via-slate-950/75 to-slate-950/90 border border-white/10 hover:border-sky-400/35 transition-all duration-300 cursor-pointer shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.15),0_0_30px_rgba(56,189,248,0.05)]"
+                className="group relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,189,248,0.12)] hover:border-primary/25"
                 onClick={() => openProjectModal(project)}
             >
-                {/* Specular top highlight line */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none z-20" />
-
                 {/* Banner */}
                 <div className={`w-full h-44 bg-gradient-to-br ${gradient} border-b border-white/10 relative overflow-hidden`}>
                     {project.image ? (
@@ -113,7 +109,7 @@ const Projects: React.FC = () => {
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent pointer-events-none" />
                         </>
                     ) : (
                         <div className="absolute inset-0" style={{
@@ -130,7 +126,7 @@ const Projects: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-7">
                     <div className="flex items-start justify-between gap-3 mb-3">
                         <div className="flex items-center gap-2 flex-wrap">
                             {project.status && (
@@ -172,12 +168,12 @@ const Projects: React.FC = () => {
                     <h3 className="text-xl font-bold text-light mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
                     <p className="text-foreground/70 mb-4 line-clamp-3 text-sm leading-relaxed">{project.description}</p>
 
-                    {/* Expandable Tech tags */}
+                    {/* Expandable Tech tags - matching Experience tech pills */}
                     <div className="flex flex-wrap gap-1.5 items-center">
                         {visibleTechs.map((tech) => (
                             <span
                                 key={tech}
-                                className="bg-sky-950/50 text-sky-200 py-1 px-2.5 rounded-lg text-xs border border-sky-600/25 backdrop-blur-md"
+                                className="bg-sky-950/60 text-sky-300 py-1 px-2.5 rounded-full text-xs border border-sky-700/30"
                             >
                                 {tech}
                             </span>
@@ -207,7 +203,7 @@ const Projects: React.FC = () => {
 
     const ProjectModal = ({ project }: { project: Project }) => (
         <div
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center z-[2000] p-3 sm:p-6"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[2000] p-3 sm:p-6"
             onClick={closeProjectModal}
             role="dialog"
             aria-modal="true"
@@ -230,14 +226,11 @@ const Projects: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ duration: 0.25, ease: defaultEase }}
-                className="bg-slate-950/90 border border-white/15 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_60px_rgba(56,189,248,0.08)] ring-1 ring-white/10 backdrop-blur-3xl relative"
+                className="bg-[#0b1120]/85 backdrop-blur-2xl border border-white/10 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] relative"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Top specular highlight line */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-sky-400/40 to-transparent pointer-events-none z-30" />
-
                 {/* Modal Header Bar */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02] shrink-0">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.03] shrink-0">
                     <div className="flex items-center gap-3 min-w-0">
                         {project.status && (
                             <span className={`inline-flex items-center py-0.5 px-3 rounded-full text-xs font-semibold border ${getStatusStyles(project.status)} shrink-0 backdrop-blur-md`}>
@@ -295,7 +288,7 @@ const Projects: React.FC = () => {
                                     className="object-cover object-top opacity-95 group-hover:scale-[1.02] transition-transform duration-500"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent pointer-events-none" />
                             </>
                         ) : (
                             <div className="absolute inset-0 flex items-center justify-center" style={{
@@ -313,12 +306,12 @@ const Projects: React.FC = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                             Overview
                         </h3>
-                        <p className="text-sm md:text-base text-foreground/85 leading-relaxed">
+                        <p className="text-sm md:text-base text-foreground/75 leading-relaxed">
                             {project.description}
                         </p>
                     </div>
 
-                    {/* Key Capabilities & Architecture Grid */}
+                    {/* Key Capabilities & Architecture Grid - using bg-white/5 matching Experience cards */}
                     <div>
                         <h3 className="text-xs font-semibold text-foreground/40 uppercase tracking-widest mb-3 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -328,9 +321,9 @@ const Projects: React.FC = () => {
                             {project.features.map((feature, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] hover:border-sky-500/30 backdrop-blur-md transition-all duration-200 group"
+                                    className="flex items-start gap-3 p-4 rounded-xl bg-white/5 hover:bg-white/[0.08] border border-white/10 hover:border-primary/25 backdrop-blur-xl transition-all duration-200 group"
                                 >
-                                    <div className="w-5 h-5 rounded-md bg-sky-500/10 border border-sky-400/20 text-sky-400 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-sky-500/20 group-hover:border-sky-400/40 transition-colors">
+                                    <div className="w-5 h-5 rounded-md bg-primary/10 border border-primary/20 text-primary flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors">
                                         <FiLayers size={11} />
                                     </div>
                                     <span className="text-xs md:text-sm text-foreground/80 leading-relaxed font-normal">
@@ -341,7 +334,7 @@ const Projects: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Tech Stack Pills */}
+                    {/* Tech Stack Pills - matching Experience tech pills */}
                     <div>
                         <h3 className="text-xs font-semibold text-foreground/40 uppercase tracking-widest mb-3 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -351,7 +344,7 @@ const Projects: React.FC = () => {
                             {project.technologies.map((tech) => (
                                 <span
                                     key={tech}
-                                    className="bg-sky-950/60 hover:bg-sky-900/40 text-sky-200 border border-sky-500/25 px-3 py-1 rounded-lg text-xs font-medium backdrop-blur-md transition-colors"
+                                    className="bg-sky-950/60 text-sky-300 py-1 px-3 rounded-full text-xs border border-sky-700/30"
                                 >
                                     {tech}
                                 </span>
@@ -361,7 +354,7 @@ const Projects: React.FC = () => {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="flex items-center justify-between px-6 py-4 border-t border-white/10 bg-white/[0.02] shrink-0">
+                <div className="flex items-center justify-between px-6 py-4 border-t border-white/10 bg-white/[0.03] shrink-0">
                     <span className="text-xs text-foreground/50 hidden sm:inline">
                         Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded border border-white/10 text-[10px] text-foreground/70">Esc</kbd> to exit
                     </span>

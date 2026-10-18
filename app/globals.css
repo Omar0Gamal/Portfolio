@@ -150,53 +150,7 @@ body {
         color: #38bdf8 !important;
 }
 
-.animate-on-scroll,
-.animate-left,
-.animate-right,
-.animate-scale {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.animate-left {
-        transform: translateX(-50px);
-}
-
-.animate-right {
-        transform: translateX(50px);
-}
-
-.animate-scale {
-        transform: scale(0.8);
-}
-
-.animate-on-scroll.animate-in,
-.animate-left.animate-in,
-.animate-right.animate-in,
-.animate-scale.animate-in {
-        opacity: 1;
-        transform: translateY(0) translateX(0) scale(1);
-}
-
-.stagger-delay-1 {
-        transition-delay: 0.1s;
-}
-.stagger-delay-2 {
-        transition-delay: 0.2s;
-}
-.stagger-delay-3 {
-        transition-delay: 0.3s;
-}
-.stagger-delay-4 {
-        transition-delay: 0.4s;
-}
-.stagger-delay-5 {
-        transition-delay: 0.5s;
-}
-.stagger-delay-6 {
-        transition-delay: 0.6s;
-}
 
 .project-modal.active {
         opacity: 1 !important;

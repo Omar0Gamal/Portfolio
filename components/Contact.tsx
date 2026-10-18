@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FiMapPin, FiPhone, FiMail, FiSend } from 'react-icons/fi';
+import { FadeIn } from '@/components/Motion';
 
 
 interface FormData {
@@ -94,9 +95,11 @@ export default function Contact() {
             className="min-h-screen py-24 px-5 flex items-center justify-center"
         >
             <div className="max-w-6xl w-full">
-                <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-on-scroll">
-                    Get In Touch
-                </h2>
+                <FadeIn direction="up">
+                    <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        Get In Touch
+                    </h2>
+                </FadeIn>
                 
                 {showSuccess && (
                     <div className="mb-8 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-300 text-center flex flex-col items-center gap-2">
@@ -119,7 +122,7 @@ export default function Contact() {
                 )}
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    <div className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10 animate-left">
+                    <FadeIn direction="right" distance={30} className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10">
                         <h3 className="text-2xl font-bold mb-6">
                             Open to new opportunities
                         </h3>
@@ -150,9 +153,9 @@ export default function Contact() {
                                 <span>omargamal.dev@outlook.com</span>
                             </a>
                         </div>
-                    </div>
+                    </FadeIn>
 
-                    <div className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10 animate-right">
+                    <FadeIn direction="left" distance={30} className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10">
                         <form onSubmit={handleSubmit} noValidate>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                                 <div>
@@ -270,7 +273,7 @@ export default function Contact() {
                                 )}
                             </button>
                         </form>
-                    </div>
+                    </FadeIn>
                 </div>
             </div>
         </section>

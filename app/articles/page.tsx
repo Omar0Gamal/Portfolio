@@ -5,6 +5,7 @@ import BackgroundAnimation from '@/components/BackgroundAnimation';
 import Particles from '@/components/Particles';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/Motion';
 
 export const metadata: Metadata = {
     title: 'Technical Articles | Omar Gamal',
@@ -55,19 +56,21 @@ export default async function ArticlesPage() {
             </div>
             <section className="min-h-screen py-24 px-5 flex items-center justify-center">
                 <div className="max-w-6xl w-full">
-                    <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
-                        <h1 className="text-4xl md:text-6xl font-extrabold mb-8 lg:mb-0 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-on-scroll">
-                            All Articles
-                        </h1>
-                    </div>
+                    <FadeIn direction="up">
+                        <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
+                            <h1 className="text-4xl md:text-6xl font-extrabold mb-8 lg:mb-0 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                                All Articles
+                            </h1>
+                        </div>
+                    </FadeIn>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {articles.map((article, index) => (
-                            <div key={article.slug} className={`animate-scale stagger-delay-${index % 3 + 1}`}>
+                    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {articles.map((article) => (
+                            <StaggerItem key={article.slug}>
                                 <ArticleCard article={article} />
-                            </div>
+                            </StaggerItem>
                         ))}
-                    </div>
+                    </StaggerContainer>
                 </div>
             </section>
         </>

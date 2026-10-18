@@ -3,9 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 import projectDetails, { ProjectKey, ProjectDetail } from '../data/projects';
+import { FadeIn } from '@/components/Motion';
 
 type Project = { id: ProjectKey } & ProjectDetail;
+
+const defaultEase = [0.21, 0.47, 0.32, 0.98] as const;
 
 const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -74,9 +78,13 @@ const Projects: React.FC = () => {
             : project.technologies.slice(0, 3);
 
         return (
-            <div
-                className="bg-white/5 rounded-2xl overflow-hidden backdrop-blur-xl border border-white/10 transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-[0_25px_50px_rgba(56,189,248,0.15)] hover:border-primary/30 hover:scale-[1.02] animate-scale"
-                style={{ animationDelay: `${index * 100}ms` }}
+            <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px', amount: 0.08 }}
+                transition={{ duration: 0.5, delay: (index % 2) * 0.08, ease: defaultEase }}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="bg-white/5 rounded-2xl overflow-hidden backdrop-blur-xl border border-white/10 transition-colors duration-300 cursor-pointer hover:shadow-[0_25px_50px_rgba(56,189,248,0.15)] hover:border-primary/30"
                 onClick={() => openProjectModal(project)}
             >
                 {/* Banner */}
@@ -123,11 +131,11 @@ const Projects: React.FC = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    aria-label={`View ${project.title} Live Demo`}
-                                    className="flex items-center gap-1.5 text-xs text-primary hover:text-white border border-primary/30 hover:border-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-all duration-200 font-medium"
+                                    className="flex items-center gap-1.5 text-xs text-sky-300 bg-sky-950/80 hover:bg-sky-900 border border-sky-700/50 hover:border-sky-500 px-2.5 py-1 rounded-full transition-all"
+                                    aria-label={`Open live demo for ${project.title}`}
                                 >
                                     <FiExternalLink size={12} />
-                                    <span>Live Demo</span>
+                                    <span>Demo</span>
                                 </a>
                             )}
                             {githubLink && (
@@ -136,20 +144,25 @@ const Projects: React.FC = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    aria-label={`View ${project.title} on GitHub`}
-                                    className="flex items-center gap-1.5 text-xs text-foreground/50 hover:text-primary border border-white/10 hover:border-primary/30 bg-white/5 hover:bg-primary/5 px-3 py-1.5 rounded-full transition-all duration-200 shrink-0"
+                                    className="text-foreground/60 hover:text-primary transition-colors p-1"
+                                    aria-label={`View ${project.title} source on GitHub`}
                                 >
-                                    <FiGithub size={12} />
-                                    <span>Source</span>
+                                    <FiGithub size={17} />
                                 </a>
                             )}
                         </div>
                     </div>
-                    <h3 className="text-lg font-bold text-light mb-2">{project.title}</h3>
-                    <p className="text-sm mb-4 line-clamp-2 text-foreground/60 leading-relaxed">{project.description}</p>
+
+                    <h3 className="text-xl font-bold text-light mb-2">{project.title}</h3>
+                    <p className="text-foreground/70 mb-4 line-clamp-3 text-sm leading-relaxed">{project.description}</p>
+
+                    {/* Expandable Tech tags */}
                     <div className="flex flex-wrap gap-1.5 items-center">
                         {visibleTechs.map((tech) => (
-                            <span key={tech} className="bg-primary/10 text-primary/80 py-0.5 px-2.5 rounded-full text-xs border border-primary/20">
+                            <span
+                                key={tech}
+                                className="bg-sky-950/60 text-sky-200 py-0.5 px-2.5 rounded-full text-xs border border-sky-700/30"
+                            >
                                 {tech}
                             </span>
                         ))}
@@ -163,21 +176,22 @@ const Projects: React.FC = () => {
                                         [project.id]: !prev[project.id],
                                     }));
                                 }}
-                                className="text-xs text-primary/80 hover:text-primary py-0.5 px-2 rounded-full border border-primary/25 hover:border-primary/50 bg-primary/10 transition-colors cursor-pointer"
-                                aria-label={isTagsExpanded ? `Show fewer tags for ${project.title}` : `Show all ${project.technologies.length} tags for ${project.title}`}
+                                className="text-xs text-primary/80 hover:text-primary underline cursor-pointer px-1 py-0.5"
                             >
-                                {isTagsExpanded ? 'Show less' : `+${project.technologies.length - 3} more`}
+                                {isTagsExpanded
+                                    ? 'Show less'
+                                    : `+${project.technologies.length - 3} more`}
                             </button>
                         )}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         );
     };
 
     const ProjectModal = ({ project }: { project: Project }) => (
         <div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-[2000] backdrop-blur-xl"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-[2000] backdrop-blur-xl p-4"
             onClick={closeProjectModal}
         >
             <style jsx>{`
@@ -192,13 +206,17 @@ const Projects: React.FC = () => {
                 }
             `}</style>
 
-            <div
-                className="bg-slate-900/95 rounded-2xl p-8 max-w-4xl w-[90%] max-h-[85vh] overflow-y-auto backdrop-blur-xl border border-white/15 relative modal-scrollbar"
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                transition={{ duration: 0.25, ease: defaultEase }}
+                className="bg-slate-900/95 rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[85vh] overflow-y-auto backdrop-blur-xl border border-white/15 relative modal-scrollbar shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
                 style={{ scrollbarWidth: 'thin', scrollbarColor: '#38bdf840 transparent' }}
             >
                 <button
-                    className="absolute top-4 right-5 text-foreground/50 text-2xl hover:text-primary transition-colors"
+                    className="absolute top-4 right-5 text-foreground/50 text-2xl hover:text-primary transition-colors cursor-pointer"
                     onClick={closeProjectModal}
                     aria-label="Close modal"
                 >
@@ -268,7 +286,7 @@ const Projects: React.FC = () => {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 
@@ -276,9 +294,11 @@ const Projects: React.FC = () => {
         <>
             <section id="projects" className="min-h-screen py-24 px-5 flex items-center justify-center">
                 <div className="max-w-6xl w-full">
-                    <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent pb-2">
-                        Key Projects
-                    </h2>
+                    <FadeIn direction="up">
+                        <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent pb-2">
+                            Key Projects
+                        </h2>
+                    </FadeIn>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {projects.map((project, index) => (
                             <ProjectCard key={project.id} project={project} index={index} />
@@ -287,9 +307,11 @@ const Projects: React.FC = () => {
                 </div>
             </section>
 
-            {isModalOpen && selectedProject && (
-                <ProjectModal project={selectedProject} />
-            )}
+            <AnimatePresence>
+                {isModalOpen && selectedProject && (
+                    <ProjectModal project={selectedProject} />
+                )}
+            </AnimatePresence>
         </>
     );
 };

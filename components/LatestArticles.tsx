@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Article } from '@/lib/articles';
 import ArticleCard from './ArticleCard';
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/Motion';
 
 interface LatestArticlesProps {
     articles: Article[];
@@ -44,36 +45,42 @@ export default function LatestArticles({ articles: initialArticles }: LatestArti
     return (
         <section id="articles" className="min-h-screen py-24 px-5 flex items-center justify-center">
             <div className="max-w-6xl w-full">
-                <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
-                    <h2 className="text-4xl md:text-6xl font-extrabold mb-8 lg:mb-0 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-on-scroll">
-                        Latest Articles
-                    </h2>
-                    <Link 
-                        href="/articles" 
-                        className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 px-6 py-3 rounded-2xl font-medium transition-all duration-300 hover:scale-105 backdrop-blur-xl"
-                    >
-                        See All Articles
-                    </Link>
-                </div>
+                <FadeIn direction="up">
+                    <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
+                        <h2 className="text-4xl md:text-6xl font-extrabold mb-8 lg:mb-0 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                            Latest Articles
+                        </h2>
+                        <Link 
+                            href="/articles" 
+                            className="bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 px-6 py-3 rounded-2xl font-medium transition-all duration-300 hover:scale-105 backdrop-blur-xl"
+                        >
+                            See All Articles
+                        </Link>
+                    </div>
+                </FadeIn>
 
-                <div className={`grid gap-8 ${
-                    articles.length === 1
-                        ? 'grid-cols-1 max-w-md mx-auto'
-                        : articles.length === 2
-                        ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto'
-                        : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-                }`}>
-                    {articles.map((article, index) => (
-                        <div key={article.id} className={`animate-scale stagger-delay-${index + 1}`}>
+                <StaggerContainer
+                    className={`grid gap-8 ${
+                        articles.length === 1
+                            ? 'grid-cols-1 max-w-md mx-auto'
+                            : articles.length === 2
+                            ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto'
+                            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                    }`}
+                >
+                    {articles.map((article) => (
+                        <StaggerItem key={article.id}>
                             <ArticleCard article={article} />
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerContainer>
 
                 {articles.length < 3 && (
-                    <p className="text-center text-xs text-foreground/70 mt-8">
-                        Deep-dives on distributed systems, Go, and software architecture published periodically.
-                    </p>
+                    <FadeIn direction="up" delay={0.2}>
+                        <p className="text-center text-xs text-foreground/70 mt-8">
+                            Deep-dives on distributed systems, Go, and software architecture published periodically.
+                        </p>
+                    </FadeIn>
                 )}
             </div>
         </section>

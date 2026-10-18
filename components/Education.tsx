@@ -1,4 +1,7 @@
+'use client';
+
 import { education, certifications, courses, Education as EducationType } from '../data/education';
+import { FadeIn, ScaleIn } from '@/components/Motion';
 
 export default function Education() {
     return (
@@ -7,14 +10,17 @@ export default function Education() {
             className="min-h-screen py-24 px-5 flex items-center justify-center"
         >
             <div className="max-w-6xl w-full">
-                <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-on-scroll">
-                    Education
-                </h2>
+                <FadeIn direction="up">
+                    <h2 className="text-4xl md:text-6xl font-extrabold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        Education
+                    </h2>
+                </FadeIn>
 
                 {education.map((edu: EducationType, index: number) => (
-                    <div
+                    <ScaleIn
                         key={index}
-                        className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10 max-w-3xl mx-auto animate-scale mb-8"
+                        initialScale={0.96}
+                        className="bg-white/5 p-10 rounded-2xl backdrop-blur-xl border border-white/10 max-w-3xl mx-auto mb-8 shadow-xl"
                     >
                         {/* Header row */}
                         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
@@ -79,7 +85,7 @@ export default function Education() {
                                 </ul>
                             </div>
                         )}
-                    </div>
+                    </ScaleIn>
                 ))}
             </div>
         </section>

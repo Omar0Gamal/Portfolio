@@ -203,7 +203,7 @@ const Projects: React.FC = () => {
 
     const ProjectModal = ({ project }: { project: Project }) => (
         <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[2000] p-3 sm:p-6"
+            className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-[2000] p-3 sm:p-6"
             onClick={closeProjectModal}
             role="dialog"
             aria-modal="true"
@@ -226,7 +226,7 @@ const Projects: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ duration: 0.25, ease: defaultEase }}
-                className="bg-[#0b1120]/85 backdrop-blur-2xl border border-white/10 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] relative"
+                className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_20px_50px_rgba(56,189,248,0.12)] relative"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Modal Header Bar */}
@@ -277,7 +277,7 @@ const Projects: React.FC = () => {
                     style={{ scrollbarWidth: 'thin', scrollbarColor: '#38bdf840 transparent' }}
                 >
                     {/* Showcase Banner / Screenshot */}
-                    <div className={`relative w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-900 to-slate-950'} group shadow-inner`}>
+                    <div className={`relative w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-800/50 to-slate-900/40'} group shadow-inner`}>
                         {project.image ? (
                             <>
                                 <Image
@@ -288,7 +288,7 @@ const Projects: React.FC = () => {
                                     className="object-cover object-top opacity-95 group-hover:scale-[1.02] transition-transform duration-500"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent pointer-events-none" />
                             </>
                         ) : (
                             <div className="absolute inset-0 flex items-center justify-center" style={{

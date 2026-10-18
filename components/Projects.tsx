@@ -226,11 +226,11 @@ const Projects: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ duration: 0.25, ease: defaultEase }}
-                className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_20px_50px_rgba(56,189,248,0.12)] relative"
+                className="bg-[#080d1a]/30 bg-gradient-to-br from-primary/15 via-white/10 to-accent/10 backdrop-blur-3xl border border-primary/20 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_25px_60px_rgba(56,189,248,0.20)] relative"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Modal Header Bar */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.03] shrink-0">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-primary/15 bg-white/[0.04] shrink-0">
                     <div className="flex items-center gap-3 min-w-0">
                         {project.status && (
                             <span className={`inline-flex items-center py-0.5 px-3 rounded-full text-xs font-semibold border ${getStatusStyles(project.status)} shrink-0 backdrop-blur-md`}>
@@ -354,7 +354,7 @@ const Projects: React.FC = () => {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="flex items-center justify-between px-6 py-4 border-t border-white/10 bg-white/[0.03] shrink-0">
+                <div className="flex items-center justify-between px-6 py-4 border-t border-primary/15 bg-white/[0.04] shrink-0">
                     <span className="text-xs text-foreground/50 hidden sm:inline">
                         Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded border border-white/10 text-[10px] text-foreground/70">Esc</kbd> to exit
                     </span>

@@ -78,12 +78,6 @@ const Experience: React.FC = () => {
                                     </p>
                                 ) : null}
 
-                                {experience.note && (
-                                    <p className="text-xs text-foreground/50 italic mb-4 border-l-2 border-white/10 pl-2.5">
-                                        {experience.note}
-                                    </p>
-                                )}
-
                                 {/* Tech pills */}
                                 {experience.technologies && experience.technologies.length > 0 && (
                                     <div className={`flex flex-wrap gap-1.5 ${experience.isRight ? "justify-start" : "md:justify-end"}`}>

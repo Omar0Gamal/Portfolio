@@ -5,7 +5,6 @@ export interface ExperienceItem {
     company: string;
     description?: string;
     bullets?: string[];
-    note?: string;
     technologies: string[];
     isRight?: boolean;
 }
@@ -32,19 +31,7 @@ export const experiences: ExperienceItem[] = [
             "Designed the architecture for a 14-service ERP, CRM, and Document Management platform; defined Protocol Buffers/API schemas, auth flows, and retry policies across a 6-person Go, Python, and React team.",
             "Built the Terraform and Helm pipeline for Kubernetes on Hetzner Cloud, enabling one-command environment provisioning."
         ],
-        note: "Platform was not released following client withdrawal.",
         technologies: ["Go", "Python", "React", "gRPC", "Protobuf", "Kubernetes", "Helm", "Terraform", "Hetzner Cloud"],
         isRight: true
-    },
-    {
-        id: "freelance-developer",
-        period: "2018 – 2022",
-        position: "Freelance Software Developer",
-        company: "Self-Employed · Remote",
-        bullets: [
-            "Delivered 20+ projects for international clients, ranging from Discord bots and landing pages (2018) to full-stack web applications, REST APIs, and AI-powered chatbot integrations."
-        ],
-        technologies: ["Python", "JavaScript", "TypeScript", "REST APIs", "Discord.py", "React"],
-        isRight: false
     }
 ];

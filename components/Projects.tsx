@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import projectDetails, { ProjectKey, ProjectDetail } from '../data/projects';
 import { FadeIn } from '@/components/Motion';
@@ -15,6 +15,18 @@ const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [expandedTags, setExpandedTags] = useState<Record<string, boolean>>({});
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        };
+        if (isModalOpen) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isModalOpen]);
 
     const projects: Project[] = Object.entries(projectDetails).map(([key, detail]) => ({
         id: key as ProjectKey,
@@ -191,8 +203,11 @@ const Projects: React.FC = () => {
 
     const ProjectModal = ({ project }: { project: Project }) => (
         <div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-[2000] backdrop-blur-xl p-4"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[2000] p-3 sm:p-6"
             onClick={closeProjectModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-project-title"
         >
             <style jsx>{`
                 .modal-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -202,7 +217,7 @@ const Projects: React.FC = () => {
                     border-radius: 10px;
                 }
                 .modal-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(56,189,248,0.4);
+                    background: rgba(56,189,248,0.45);
                 }
             `}</style>
 
@@ -211,80 +226,151 @@ const Projects: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ duration: 0.25, ease: defaultEase }}
-                className="bg-slate-900/95 rounded-2xl p-6 md:p-8 max-w-4xl w-full max-h-[85vh] overflow-y-auto backdrop-blur-xl border border-white/15 relative modal-scrollbar shadow-2xl"
+                className="bg-slate-950/95 border border-white/15 rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.9)] ring-1 ring-white/10"
                 onClick={(e) => e.stopPropagation()}
-                style={{ scrollbarWidth: 'thin', scrollbarColor: '#38bdf840 transparent' }}
             >
-                <button
-                    className="absolute top-4 right-5 text-foreground/50 text-2xl hover:text-primary transition-colors cursor-pointer"
-                    onClick={closeProjectModal}
-                    aria-label="Close modal"
-                >
-                    ×
-                </button>
-
-                {/* Modal banner */}
-                <div className={`w-full h-56 mb-6 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-800/60 to-slate-900/60'} rounded-xl border border-white/10 relative overflow-hidden flex flex-col items-center justify-end p-4`}>
-                    {project.image ? (
-                        <>
-                            <Image
-                                src={project.image}
-                                alt={`${project.title} preview`}
-                                fill
-                                sizes="(max-width: 1024px) 100vw, 800px"
-                                className="object-cover object-top opacity-80"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent pointer-events-none" />
-                        </>
-                    ) : (
-                        <div className="absolute inset-0 rounded-xl" style={{
-                            backgroundImage: 'linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)',
-                            backgroundSize: '24px 24px'
-                        }} />
-                    )}
-                    <span className="text-2xl font-bold text-white relative z-10 mb-2 drop-shadow-md">{project.title}</span>
-                    <div className="flex flex-wrap gap-2 justify-center px-4 relative z-10">
-                        {project.technologies.map((tech) => (
-                            <span key={tech} className="text-xs bg-black/60 backdrop-blur-md text-sky-200 border border-white/20 px-2.5 py-1 rounded-full">
-                                {tech}
+                {/* Modal Header Bar */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02] shrink-0">
+                    <div className="flex items-center gap-3 min-w-0">
+                        {project.status && (
+                            <span className={`inline-flex items-center py-0.5 px-3 rounded-full text-xs font-semibold border ${getStatusStyles(project.status)} shrink-0`}>
+                                <span className="w-1.5 h-1.5 rounded-full bg-current mr-1.5 animate-pulse" />
+                                {project.status}
                             </span>
+                        )}
+                        <h2 id="modal-project-title" className="text-xl md:text-2xl font-bold text-white truncate">
+                            {project.title}
+                        </h2>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                        {project.links && Object.entries(project.links).map(([buttonName, url]) => (
+                            <a
+                                key={buttonName}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                                    url.includes('github.com')
+                                        ? 'bg-white/10 hover:bg-white/15 text-white/90 border border-white/15'
+                                        : 'bg-primary/20 hover:bg-primary/30 text-primary border border-primary/40 shadow-[0_0_15px_rgba(56,189,248,0.25)]'
+                                }`}
+                            >
+                                {url.includes('github.com') ? <FiGithub size={13} /> : <FiExternalLink size={13} />}
+                                <span>{buttonName}</span>
+                            </a>
                         ))}
+                        <button
+                            type="button"
+                            onClick={closeProjectModal}
+                            aria-label="Close modal"
+                            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white flex items-center justify-center transition-colors border border-white/10 cursor-pointer ml-1"
+                        >
+                            <FiX size={16} />
+                        </button>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-3 mb-4 flex-wrap">
-                    {project.status && (
-                        <span className={`inline-block py-1 px-4 rounded-full text-sm font-semibold border ${getStatusStyles(project.status)}`}>
-                            {project.status}
-                        </span>
-                    )}
-                    {project.links && Object.entries(project.links).map(([buttonName, url]) => (
-                        <a
-                            key={buttonName}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1.5 px-4 py-1.5 bg-primary/15 text-primary rounded-full text-sm font-medium border border-primary/25 hover:bg-primary/25 transition-all"
-                        >
-                            {url.includes('github.com') ? <FiGithub size={13} /> : <FiExternalLink size={13} />}
-                            {buttonName}
-                        </a>
-                    ))}
+                {/* Modal Scrollable Body */}
+                <div
+                    className="p-6 md:p-8 overflow-y-auto space-y-6 modal-scrollbar"
+                    style={{ scrollbarWidth: 'thin', scrollbarColor: '#38bdf840 transparent' }}
+                >
+                    {/* Showcase Banner / Screenshot */}
+                    <div className={`relative w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br ${bannerColors[project.id] ?? 'from-slate-900 to-slate-950'} group`}>
+                        {project.image ? (
+                            <>
+                                <Image
+                                    src={project.image}
+                                    alt={`${project.title} preview`}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 900px"
+                                    className="object-cover object-top opacity-95 group-hover:scale-[1.02] transition-transform duration-500"
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                            </>
+                        ) : (
+                            <div className="absolute inset-0 flex items-center justify-center" style={{
+                                backgroundImage: 'linear-gradient(rgba(56,189,248,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.06) 1px, transparent 1px)',
+                                backgroundSize: '24px 24px'
+                            }}>
+                                <span className="text-3xl font-extrabold text-white/80 tracking-wide">{project.title}</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Overview */}
+                    <div>
+                        <h3 className="text-xs font-semibold text-foreground/40 uppercase tracking-widest mb-2">
+                            Overview
+                        </h3>
+                        <p className="text-sm md:text-base text-foreground/85 leading-relaxed">
+                            {project.description}
+                        </p>
+                    </div>
+
+                    {/* Key Capabilities & Architecture Grid */}
+                    <div>
+                        <h3 className="text-xs font-semibold text-foreground/40 uppercase tracking-widest mb-3">
+                            Key Capabilities & Architecture
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {project.features.map((feature, idx) => (
+                                <div
+                                    key={idx}
+                                    className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-primary/30 transition-colors"
+                                >
+                                    <span className="text-base leading-none mt-0.5 shrink-0 text-primary">•</span>
+                                    <span className="text-xs md:text-sm text-foreground/80 leading-relaxed">
+                                        {feature}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Tech Stack Pills */}
+                    <div>
+                        <h3 className="text-xs font-semibold text-foreground/40 uppercase tracking-widest mb-3">
+                            Technologies & Stack
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech) => (
+                                <span
+                                    key={tech}
+                                    className="bg-sky-950/70 text-sky-200 border border-sky-600/30 px-3 py-1 rounded-lg text-xs font-medium"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
-                <h2 className="text-2xl font-bold text-light mb-3">{project.title}</h2>
-                <p className="text-base mb-6 leading-relaxed text-foreground/70">{project.description}</p>
-
-                <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-foreground/50 uppercase tracking-widest mb-3">Key Features</h4>
-                    <ul className="space-y-2">
-                        {project.features.map((feature, index) => (
-                            <li key={index} className="flex items-start gap-2 text-sm text-foreground/80">
-                                <span className="text-primary mt-0.5 shrink-0">›</span>
-                                <span>{feature}</span>
-                            </li>
+                {/* Modal Footer */}
+                <div className="flex items-center justify-between px-6 py-4 border-t border-white/10 bg-white/[0.02] shrink-0">
+                    <span className="text-xs text-foreground/50 hidden sm:inline">
+                        Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded border border-white/10 text-[10px]">Esc</kbd> to exit
+                    </span>
+                    <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                        {project.links && Object.entries(project.links).map(([buttonName, url]) => (
+                            <a
+                                key={buttonName}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                                    url.includes('github.com')
+                                        ? 'bg-white/10 hover:bg-white/15 text-white border border-white/15'
+                                        : 'bg-gradient-to-r from-primary to-accent text-dark font-bold hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:-translate-y-0.5'
+                                }`}
+                            >
+                                {url.includes('github.com') ? <FiGithub size={14} /> : <FiExternalLink size={14} />}
+                                <span>{buttonName}</span>
+                            </a>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </motion.div>
         </div>

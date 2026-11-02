@@ -7,8 +7,6 @@ import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
-
- 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -18,14 +16,14 @@ const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Omar Gamal',
-  jobTitle: 'Backend, Cloud & Full-Stack Engineer',
+  jobTitle: 'Software, Full-Stack & Cloud Infrastructure Engineer',
   url: 'https://omar0gamal.vercel.app',
   sameAs: [
     'https://github.com/Omar0Gamal',
     'https://www.linkedin.com/in/omar-gamal-091044168/',
   ],
   description:
-    'Backend, Cloud & Full-Stack Engineer specializing in distributed systems, Go, Kubernetes, and modern full-stack web applications.',
+    'Software, Full-Stack & Cloud Infrastructure Engineer with 4+ years of production experience across Go, Python (FastAPI/Django), TypeScript, React, Next.js, Node.js, C++17/CUDA, AWS, GCP, Kubernetes, Terraform, Docker, PostgreSQL, Redis, gRPC, GraphQL, and Kafka/NATS.',
 }
 
 export const metadata: Metadata = {
@@ -34,28 +32,44 @@ export const metadata: Metadata = {
     canonical: 'https://omar0gamal.vercel.app',
   },
   title: {
-    default: 'Omar Gamal - Backend, Cloud & Full-Stack Engineer',
+    default: 'Omar Gamal - Software, Full-Stack & Cloud Infrastructure Engineer',
     template: '%s | Omar Gamal'
   },
-  description: 'Backend, Cloud & Full-Stack Engineer specializing in distributed systems, Go, Kubernetes, and modern full-stack applications.',
+  description: 'Software, Full-Stack & Cloud Infrastructure Engineer (Backend, Distributed Systems, Full-Stack & DevOps) with 4+ years of production experience across Go, Python, TypeScript, React, Next.js, C++, AWS, GCP, Kubernetes, Terraform, PostgreSQL, Redis, and event streaming.',
   keywords: [
     'Omar Gamal',
-    'backend engineer',
-    'cloud engineer',
-    'full-stack',
-    'distributed systems',
+    'Software Engineer',
+    'Full-Stack Engineer',
+    'Cloud Infrastructure Engineer',
+    'Backend Engineer',
+    'DevOps Engineer',
+    'Distributed Systems',
     'Go',
     'Golang',
-    'Kubernetes',
-    'Docker',
-    'Terraform',
-    'Helm',
-    'Next.js',
+    'Python',
+    'FastAPI',
+    'Django',
     'TypeScript',
-    'Cloudflare Workers',
-    'Prisma',
-    'PostgreSQL',
+    'React',
+    'Next.js',
+    'Node.js',
     'C++',
+    'CUDA',
+    'AWS',
+    'GCP',
+    'Kubernetes',
+    'Terraform',
+    'Ansible',
+    'Docker',
+    'Helm',
+    'PostgreSQL',
+    'Redis',
+    'Kafka',
+    'NATS',
+    'gRPC',
+    'GraphQL',
+    'Prometheus',
+    'Grafana',
   ],
   authors: [{ name: 'Omar Gamal' }],
   creator: 'Omar Gamal',
@@ -65,8 +79,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://omar0gamal.vercel.app',
     siteName: 'Omar Gamal Portfolio',
-    title: 'Omar Gamal - Backend, Cloud & Full-Stack Engineer',
-    description: 'Backend, Cloud & Full-Stack Engineer specializing in distributed systems, Go, Kubernetes, and modern full-stack applications.',
+    title: 'Omar Gamal - Software, Full-Stack & Cloud Infrastructure Engineer',
+    description: 'Software, Full-Stack & Cloud Infrastructure Engineer (Backend, Distributed Systems, Full-Stack & DevOps) with 4+ years of production experience across Go, Python, TypeScript, React, Next.js, C++, AWS, GCP, Kubernetes, and Terraform.',
     images: [
       {
         url: '/og-image.jpg',
@@ -78,15 +92,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omar Gamal - Backend, Cloud & Full-Stack Engineer',
-    description: 'Backend, Cloud & Full-Stack Engineer specializing in distributed systems, Go, Kubernetes, and modern full-stack applications.',
+    title: 'Omar Gamal - Software, Full-Stack & Cloud Infrastructure Engineer',
+    description: 'Software, Full-Stack & Cloud Infrastructure Engineer (Backend, Distributed Systems, Full-Stack & DevOps) with 4+ years of production experience across Go, Python, TypeScript, React, Next.js, C++, AWS, GCP, Kubernetes, and Terraform.',
     images: ['/og-image.jpg'],
     creator: '@OmarGam76954896',
   },
   other: {
     'linkedin:card': 'summary_large_image',
-    'linkedin:title': 'Omar Gamal - Backend, Cloud & Full-Stack Engineer',
-    'linkedin:description': 'Backend, Cloud & Full-Stack Engineer specializing in distributed systems, Go, Kubernetes, and modern full-stack applications.',
+    'linkedin:title': 'Omar Gamal - Software, Full-Stack & Cloud Infrastructure Engineer',
+    'linkedin:description': 'Software, Full-Stack & Cloud Infrastructure Engineer (Backend, Distributed Systems, Full-Stack & DevOps) with 4+ years of production experience across Go, Python, TypeScript, React, Next.js, C++, AWS, GCP, Kubernetes, and Terraform.',
     'linkedin:image': 'https://omar0gamal.vercel.app/og-image.jpg',
     'linkedin:url': 'https://omar0gamal.vercel.app',
   },

@@ -1,39 +1,39 @@
 'use client';
 
 import React from 'react';
-import { FiMail, FiLinkedin, FiGithub } from 'react-icons/fi';
+import { FiMail, FiLinkedin, FiGithub, FiFileText } from 'react-icons/fi';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/Motion';
 
 const highlights = [
     {
         icon: '⚙️',
-        label: 'Production Contract',
-        text: 'Architected a 14-service platform (ERP, CRM, and document management), owning every layer from gRPC Protobuf contracts to Terraform + Helm on Kubernetes.',
+        label: 'Lead Architect (Ayist Group)',
+        text: 'Architected a 14-service distributed platform (ERP, CRM, Document Management) across a 6-engineer Go, Python (FastAPI/Django), and React/TypeScript team using gRPC/GraphQL, PostgreSQL, Redis, and event streams on Kubernetes with Terraform & Helm.',
+    },
+    {
+        icon: '🎮',
+        label: 'Cloud & Infrastructure (Attila Gaming)',
+        text: 'Engineered 15+ microservices and Next.js/React dashboards in Go, Python, TypeScript, and Java for 500+ concurrent clients; owned cloud infrastructure across AWS, Docker, Kubernetes, Terraform, and Prometheus/Grafana/Loki (cutting crashes by 60% and latency by 40%).',
     },
     {
         icon: '🚀',
         label: 'Full-Stack Delivery',
-        text: 'Shipped production-grade full-stack applications: Nexus Commerce with Cloudflare Worker edge multi-tenancy and JobTrack backed by 207 Vitest + 5 Playwright tests with a live interactive demo.',
+        text: 'Shipped production full-stack systems: Nexus Commerce (25-module Go modular monolith + Next.js 16 storefront + Cloudflare edge routing) and JobTrack (Next.js + Prisma + PostgreSQL + 207 Vitest + 5 Playwright E2E tests).',
     },
     {
         icon: '🔄',
-        label: 'Open Source',
-        text: 'Built Cartwright: a polyglot saga implementation in Go / C# / Python proving distributed checkout can recover cleanly from mid-flight failures.',
+        label: 'Distributed Sagas & AI Systems',
+        text: 'Built AxiomGraph (33,000+ QPS hybrid graph-vector database in C++17/CUDA with Python SDK) and Cartwright (polyglot distributed saga checkout engine in Go, C#, Python with chaos testing mid-flight recovery).',
     },
     {
         icon: '📈',
         label: 'Academia',
-        text: 'GPA 3.92 / 4.0 (Dean\'s List), final-year Computer Science with a focus on systems programming and distributed computing (expected 2027).',
-    },
-    {
-        icon: '🎮',
-        label: 'Game Infrastructure',
-        text: 'Shipped 15+ Java backend services/Spigot plugins for a 500+ concurrent-player game server, resulting in 60% fewer crashes and 40% lower latency.',
+        text: 'GPA 3.92 / 4.0 (Dean\'s Honor List), B.Sc. in Computer Science with a focus on systems programming, distributed systems, and cloud infrastructure.',
     },
     {
         icon: '🤝',
         label: 'Upstream Contribution',
-        text: 'Patched two out-of-bounds RPC memory bugs in llama.cpp by validating tensor shapes before graph execution.',
+        text: 'Eliminated two critical out-of-bounds RPC memory vulnerabilities in llama.cpp upstream via pre-execution tensor shape validation.',
     },
 ];
 
@@ -54,12 +54,11 @@ const About: React.FC = () => {
                     {/* Bio + contact */}
                     <FadeIn direction="right" distance={30} className="lg:col-span-1 self-start">
                         <div className="bg-white/5 p-8 rounded-2xl backdrop-blur-xl border border-white/10">
-                            <p className="text-sm leading-relaxed mb-6 text-foreground/70">
-                                Final-year CS student building production-grade backend and cloud systems with proven full-stack delivery.
-                                I care about correctness under failure, whether that&apos;s
-                                compensating transactions in a distributed checkout or
-                                idempotency keys that survive network retries.
-                                Across the stack, I ship tested, documented, and reliably deployed web applications from database schemas to edge routing.
+                            <p className="text-sm leading-relaxed mb-6 text-foreground/75">
+                                Software, Full-Stack &amp; Cloud Infrastructure Engineer with 4+ years of production experience architecting resilient distributed microservices, low-latency APIs, modern web platforms, and automated cloud infrastructure.
+                            </p>
+                            <p className="text-sm leading-relaxed mb-6 text-foreground/75">
+                                From gRPC/GraphQL contracts and asynchronous event streaming in Go and Python (FastAPI/Django) to full-stack Next.js/React applications and multi-cloud Kubernetes deployments with Terraform, I focus on software correctness, observability, and systems that hold under high concurrency and failure.
                             </p>
                             <div className="flex flex-col gap-3 pt-4 border-t border-white/8">
                                 <a
@@ -86,6 +85,15 @@ const About: React.FC = () => {
                                 >
                                     <FiGithub size={14} className="shrink-0" />
                                     <span>GitHub</span>
+                                </a>
+                                <a
+                                    href="/resume.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-3 text-foreground/60 no-underline transition-colors duration-300 hover:text-primary text-sm"
+                                >
+                                    <FiFileText size={14} className="shrink-0" />
+                                    <span>Download Resume (PDF)</span>
                                 </a>
                             </div>
                         </div>

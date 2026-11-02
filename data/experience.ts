@@ -13,25 +13,57 @@ export const experiences: ExperienceItem[] = [
     {
         id: "attila-gaming",
         period: "Jan 2022 – Mar 2026",
-        position: "Backend & DevOps Engineer",
+        position: "Software & Cloud Infrastructure Engineer (Backend, Full-Stack & DevOps)",
         company: "Attila Gaming · United States (Remote)",
         bullets: [
-            "Managed production Linux infrastructure and backend services for a real-time platform serving 500+ concurrent users, cutting server crashes by 60% and response latency by 40% under peak load; developed 15+ Java backend services.",
-            "Built GitHub Actions CI/CD pipelines, Dockerized deployments, zero-downtime backup recovery, and Prometheus/Grafana/Loki observability across multi-node Linux hosts."
+            "Engineered and scaled 15+ production microservices, low-latency APIs, and real-time React/TypeScript/Next.js operations dashboards across Go, Python (FastAPI/Django), TypeScript/Node.js, and Java for a distributed multi-server platform serving 500+ concurrent clients (cutting latency by 40%).",
+            "Owned cloud and Linux production infrastructure across AWS, GCP, Docker, Kubernetes (k8s), Terraform, Ansible, and GitHub Actions CI/CD, backed by PostgreSQL, Redis, and Prometheus/Grafana/Loki observability (reducing crashes by 60% and maintaining 99.95% uptime)."
         ],
-        technologies: ["Java", "Linux", "Docker", "CI/CD", "GitHub Actions", "Prometheus", "Grafana", "Loki"],
+        technologies: [
+            "Go",
+            "Python (FastAPI/Django)",
+            "TypeScript",
+            "React",
+            "Next.js",
+            "Java",
+            "Docker",
+            "Kubernetes",
+            "AWS",
+            "GCP",
+            "Terraform",
+            "Ansible",
+            "PostgreSQL",
+            "Redis",
+            "Prometheus/Grafana/Loki",
+            "CI/CD"
+        ],
         isRight: false
     },
     {
         id: "ayist-group",
         period: "Sep 2025 – Nov 2025",
-        position: "Backend & Cloud Architect (Contract)",
+        position: "Lead Backend, Full-Stack & Cloud Architect (Contract)",
         company: "Ayist Group · Poland (Remote)",
         bullets: [
-            "Designed the architecture for a 14-service ERP, CRM, and Document Management platform; defined Protocol Buffers/API schemas, auth flows, and retry policies across a 6-person Go, Python, and React team.",
-            "Built the Terraform and Helm pipeline for Kubernetes on Hetzner Cloud, enabling one-command environment provisioning."
+            "Architected a 14-service distributed enterprise platform (ERP, CRM, Document Management) across a 6-engineer Go, Python (FastAPI/Django), and React/TypeScript team using gRPC/Protobuf, REST, GraphQL, PostgreSQL, Redis, and async event streams (NATS/Kafka) with idempotent failure recovery.",
+            "Built automated Terraform, Helm, and Kubernetes deployment pipelines for multi-node cloud production clusters."
         ],
-        technologies: ["Go", "Python", "React", "gRPC", "Protobuf", "Kubernetes", "Helm", "Terraform", "Hetzner Cloud"],
+        technologies: [
+            "Go",
+            "Python (FastAPI)",
+            "React",
+            "TypeScript",
+            "gRPC",
+            "GraphQL",
+            "REST",
+            "PostgreSQL",
+            "Redis",
+            "NATS / Kafka",
+            "Kubernetes",
+            "Helm",
+            "Terraform",
+            "Hetzner Cloud"
+        ],
         isRight: true
     }
 ];

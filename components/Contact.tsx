@@ -127,9 +127,8 @@ export default function Contact() {
                             Open to new opportunities
                         </h3>
                         <p className="mb-8 text-foreground/75 leading-relaxed">
-                            I&apos;m actively looking for backend, cloud, and full-stack engineering roles.
-                            If you&apos;re building distributed systems, working on developer tooling,
-                            or just want to talk about something interesting, reach out.
+                            I&apos;m actively looking for software, backend, full-stack, and cloud infrastructure engineering roles.
+                            If you&apos;re building distributed systems, high-scale web platforms, or resilient cloud services, reach out.
                         </p>
                         <div className="flex flex-col gap-4">
                             <div className="flex items-center gap-4 p-3 rounded-lg bg-white/5">

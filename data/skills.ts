@@ -6,34 +6,26 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
     {
         title: "Languages",
-        skills: ["Go", "TypeScript", "C++", "Java", "Python", "C#", "SQL", "CUDA"]
+        skills: ["Go", "Python", "TypeScript", "JavaScript", "C++17 / CUDA", "Java", "C# / .NET", "SQL"]
     },
     {
         title: "Backend & APIs",
-        skills: ["REST", "OpenAPI", "gRPC", "Protocol Buffers", "Gin", "sqlc", "Auth.js", "ASP.NET", "Microservices", "Distributed Systems", "Role-Based Access Control", "Multi-Tenancy"]
+        skills: ["FastAPI", "Django", "Node.js", "Gin", "gRPC / GraphQL", "REST & OpenAPI", "Protocol Buffers", "Microservices", "Distributed Systems", "Multi-Tenancy"]
     },
     {
         title: "Frontend",
-        skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "TanStack Query"]
-    },
-    {
-        title: "Testing",
-        skills: ["Vitest", "Playwright", "Chaos Engineering"]
-    },
-    {
-        title: "Messaging & Data",
-        skills: ["PostgreSQL", "Redis", "Prisma", "SQLite", "NATS JetStream"]
+        skills: ["React", "Next.js (App Router)", "TypeScript", "Tailwind CSS", "TanStack Query", "State Management"]
     },
     {
         title: "Cloud & Infrastructure",
-        skills: ["Docker", "Kubernetes", "Helm", "Terraform", "Cloudflare Workers", "Cloudflare KV", "Cloudflare R2", "Linux", "Caddy", "CI/CD", "GitHub Actions"]
+        skills: ["AWS / GCP", "Kubernetes / Helm", "Terraform / Ansible", "Docker / CI/CD", "GitHub Actions", "Linux System Admin", "Cloudflare Workers / KV"]
     },
     {
-        title: "Observability",
-        skills: ["Prometheus", "Grafana", "Loki", "Promtail", "Request Tracing"]
+        title: "Data & Event Streaming",
+        skills: ["PostgreSQL", "Redis", "Kafka / NATS", "Prisma ORM", "sqlc", "SQLite", "Vector Search (cuVS/HNSW)"]
     },
     {
-        title: "Systems",
-        skills: ["Multithreading", "Idempotency & Retry Design", "CMake", "Vector Search (HNSW)"]
+        title: "Observability & Reliability",
+        skills: ["Prometheus / Grafana", "Loki & Promtail", "OpenTelemetry / Tracing", "Chaos Engineering", "Vitest & Playwright", "Idempotency & Retry Design"]
     }
 ];
